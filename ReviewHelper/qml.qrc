@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MainWindow.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>UI.qml</file>
+        <file>NotebookListPage.qml</file>
+        <file>NotebookCard.qml</file>
+        <file>NotebookDetailPage.qml</file>
+        <file>States.qml</file>
+        <file>ReviewPage.qml</file>
+        <file>NotebookEditPage.qml</file>
+        <file>EntryEditPage.qml</file>
+    </qresource>
+</RCC>
