@@ -3,6 +3,8 @@
 #include <QQmlContext>
 #include <QString>
 
+#include "notebookmanager.h"
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -17,8 +19,12 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
+    auto context = engine.rootContext();
+    context->setContextProperty("NotebookManager", NotebookManager::instance());
+
     qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "ReviewHelper", 1, 0, "UI");
     qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "ReviewHelper", 1, 0, "States");
+    qmlRegisterSingletonType(QUrl("qrc:/Actions.qml"), "ReviewHelper", 1, 0, "Actions");
 
     engine.load(url);
 

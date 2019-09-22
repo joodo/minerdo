@@ -10,5 +10,6 @@
         <file>ReviewPage.qml</file>
         <file>NotebookEditPage.qml</file>
         <file>EntryEditPage.qml</file>
+        <file>Actions.qml</file>
     </qresource>
 </RCC>

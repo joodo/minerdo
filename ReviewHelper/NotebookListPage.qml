@@ -58,6 +58,7 @@ Page {
                         id: notebookCard
                         text: "Item " + index
                         onClicked: {
+                            Actions.openNotebook()
                             notebookListPage.itemClicked(Qt.rect(
                                                          x+flow.x,
                                                          y-flickable.contentY+flow.y,

@@ -34,14 +34,17 @@ Page {
     ColumnLayout {
         anchors.fill: parent
         TextArea {
+            id: questionTextArea
             placeholderText: qsTr("Question")
             Layout.fillHeight: true; Layout.fillWidth: true
         }
         TextArea {
+            id: answerTextArea
             placeholderText: qsTr("Answer")
             Layout.fillHeight: true; Layout.fillWidth: true
         }
         TextArea {
+            id: noteTextArea
             placeholderText: qsTr("Note")
             Layout.fillHeight: true; Layout.fillWidth: true
         }
@@ -53,6 +56,16 @@ Page {
             ToolButton {
                 text: qsTr("Add and New")
                 Layout.fillWidth: true
+                onClicked: {
+                    Actions.insertEntry({
+                                            "question": questionTextArea.text,
+                                            "answer": answerTextArea.text,
+                                            "note": noteTextArea.text,
+                                        })
+                    questionTextArea.clear()
+                    answerTextArea.clear()
+                    noteTextArea.clear()
+                }
             }
             ToolButton {
                 text: qsTr("Add")
