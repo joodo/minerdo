@@ -7,4 +7,5 @@ QtObject {
         "id": -1,
         "name": "Default Notebook",
     }
+    //property var entryListModel: NotebookManager.entryListModel()
 }

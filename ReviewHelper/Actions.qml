@@ -4,9 +4,9 @@ import QtQuick 2.13
 
 QtObject {
     function openNotebook() {
-        NotebookManager.open()
+        EntryModel.open()
     }
     function insertEntry(entry) {
-        NotebookManager.insert(entry)
+        EntryModel.insert(entry)
     }
 }

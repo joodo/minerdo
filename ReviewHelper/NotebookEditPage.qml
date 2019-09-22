@@ -33,7 +33,7 @@ Page {
 
     ListView {
         anchors.fill: parent
-        model: 20
+        model: EntryModel
         delegate: ItemDelegate {
             onClicked: {
                 notebookEditPage.newTriggered()
@@ -43,7 +43,7 @@ Page {
                 left: parent.left; right: parent.right
             }
 
-            text: "[" + index + "] " + "QuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestion"
+            text: "[" + 5 + "] " + "QuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestion"
         }
 
         ScrollBar.vertical: ScrollBar { }

@@ -3,7 +3,7 @@
 #include <QQmlContext>
 #include <QString>
 
-#include "notebookmanager.h"
+#include "entrymodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     auto context = engine.rootContext();
-    context->setContextProperty("NotebookManager", NotebookManager::instance());
+    context->setContextProperty("EntryModel", EntryModel::instance());
 
     qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "ReviewHelper", 1, 0, "UI");
     qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "ReviewHelper", 1, 0, "States");
