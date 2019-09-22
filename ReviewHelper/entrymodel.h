@@ -6,28 +6,26 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QSqlRecord>
-#include <QDir>
 #include <QJsonObject>
 #include <QSqlTableModel>
 
 class EntryModel : public QSqlTableModel
 {
     Q_OBJECT
-
 public:
-    static EntryModel* instance();
-private:
-    static EntryModel* m_instance;
+    EntryModel(QObject* parent = nullptr);
 
 public slots:
-    void open();
-    void insert(const QJsonObject& entry);
+    void append(const QJsonObject& entry);
+    void update(int row, const QJsonObject& entry);
+    void remove(int index);
+    QJsonObject get(int index);
 private:
 
     // QAbstractItemModel interface
 public:
-    QHash<int, QByteArray> roleNames() const;
-    QVariant data(const QModelIndex &index, int role) const;
+    QHash<int, QByteArray> roleNames() const override;
+    QVariant data(const QModelIndex &index, int role) const override;
 };
 
 #endif // ENTRYMODEL_H

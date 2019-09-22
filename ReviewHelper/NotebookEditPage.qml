@@ -20,7 +20,6 @@ Page {
             ToolButton {
                 text: "<"
                 onClicked: notebookEditPage.backTriggered()
-                
             }
             Label {
                 Layout.fillWidth: true
@@ -33,9 +32,11 @@ Page {
 
     ListView {
         anchors.fill: parent
-        model: EntryModel
+        model: States.entryModel
         delegate: ItemDelegate {
             onClicked: {
+                States.currentEntry = States.entryModel.get(index)
+                States.currentEntryRow = index
                 notebookEditPage.newTriggered()
             }
 
@@ -43,7 +44,7 @@ Page {
                 left: parent.left; right: parent.right
             }
 
-            text: "[" + 5 + "] " + "QuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestionQuestion"
+            text: question? "[" + index + "] " + question.replace(/\n/g, ' ') : ""
         }
 
         ScrollBar.vertical: ScrollBar { }
@@ -52,7 +53,10 @@ Page {
     RoundButton {
         text: "+"
 
-        onClicked: notebookEditPage.newTriggered()
+        onClicked: {
+            States.currentEntry = null
+            notebookEditPage.newTriggered()
+        }
 
         Material.elevation: 10
         z: Material.elevation

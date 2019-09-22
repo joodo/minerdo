@@ -12,6 +12,8 @@ Page {
 
     signal backTriggered()
 
+    state: States.currentEntry? "edit" : "new"
+
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
@@ -63,23 +65,85 @@ Page {
             anchors.fill: parent
             enabled: questionTextArea.text && answerTextArea.text
             ToolButton {
-                text: qsTr("Add and New")
+                id: button1
                 Layout.fillWidth: true
+            }
+            ToolButton {
+                id: button2
+                Layout.fillWidth: true
+            }
+        }
+    }
+
+    states: [
+        State {
+            name: "new"
+            PropertyChanges {
+                target: button1
+                text: qsTr("Add and New")
                 onClicked: {
-                    Actions.insertEntry({
+                    States.entryModel.append({
                                             "question": questionTextArea.text,
                                             "answer": answerTextArea.text,
                                             "note": noteTextArea.text,
+                                            "status": 0,
                                         })
                     questionTextArea.clear()
                     answerTextArea.clear()
                     noteTextArea.clear()
                 }
             }
-            ToolButton {
+            PropertyChanges {
+                target: button2
                 text: qsTr("Add")
-                Layout.fillWidth: true
+                onClicked: {
+                    States.entryModel.append({
+                                            "question": questionTextArea.text,
+                                            "answer": answerTextArea.text,
+                                            "note": noteTextArea.text,
+                                            "status": 0,
+                                        })
+                    entryEditPage.backTriggered()
+                }
+            }
+        },
+        State {
+            name: "edit"
+            PropertyChanges {
+                target: button1
+                text: qsTr("Update")
+                onClicked: {
+                    States.entryModel.update(
+                                States.currentEntryRow,
+                                Object.assign(States.currentEntry, {
+                                                  "question": questionTextArea.text,
+                                                  "answer": answerTextArea.text,
+                                                  "note": noteTextArea.text,
+                                              })
+                                )
+                    entryEditPage.backTriggered()
+                }
+            }
+            PropertyChanges {
+                target: button2
+                text: qsTr("Remove")
+                onClicked: {
+                    States.entryModel.remove(States.currentEntryIndex)
+                    entryEditPage.backTriggered()
+                }
+            }
+            PropertyChanges {
+                target: questionTextArea
+                text: States.currentEntry.question
+            }
+            PropertyChanges {
+                target: answerTextArea
+                text: States.currentEntry.answer
+            }
+            PropertyChanges {
+                target: noteTextArea
+                text: States.currentEntry.note
             }
         }
-    }
+    ]
 }

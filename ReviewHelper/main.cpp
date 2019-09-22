@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QString>
+#include <QSqlDatabase>
+#include <QDir>
 
 #include "entrymodel.h"
 
@@ -10,6 +12,14 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+
+    // sql
+    auto database = QSqlDatabase::addDatabase("QSQLITE");
+    QString dbname = QDir::home().path() + "/default.db";
+    //qDebug() << dbname;
+    database.setDatabaseName(dbname);
+    database.open();
+    //qDebug() << database.tables();
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/MainWindow.qml"));
@@ -20,8 +30,8 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     auto context = engine.rootContext();
-    context->setContextProperty("EntryModel", EntryModel::instance());
 
+    qmlRegisterType<EntryModel>("ReviewHelper", 1, 0, "EntryModel");
     qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "ReviewHelper", 1, 0, "UI");
     qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "ReviewHelper", 1, 0, "States");
     qmlRegisterSingletonType(QUrl("qrc:/Actions.qml"), "ReviewHelper", 1, 0, "Actions");

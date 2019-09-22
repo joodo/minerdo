@@ -4,9 +4,10 @@ import QtQuick 2.13
 
 QtObject {
     function openNotebook() {
-        EntryModel.open()
+        //EntryModel.open()
     }
-    function insertEntry(entry) {
-        EntryModel.insert(entry)
+    function appendEntry(entry) {
+        //print(EntryModel.setData())
+        //EntryModel.append(entry)
     }
 }
