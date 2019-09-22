@@ -29,30 +29,39 @@ Page {
         }
     }
 
-    padding: UI.dp(20)
-
-    ColumnLayout {
+    ScrollView {
         anchors.fill: parent
-        TextArea {
-            id: questionTextArea
-            placeholderText: qsTr("Question")
-            Layout.fillHeight: true; Layout.fillWidth: true
-        }
-        TextArea {
-            id: answerTextArea
-            placeholderText: qsTr("Answer")
-            Layout.fillHeight: true; Layout.fillWidth: true
-        }
-        TextArea {
-            id: noteTextArea
-            placeholderText: qsTr("Note")
-            Layout.fillHeight: true; Layout.fillWidth: true
+        padding: UI.dp(20)
+        contentWidth: contentItem.width
+
+        ColumnLayout {
+            anchors { left: parent.left; right: parent.right }
+
+            TextArea {
+                id: questionTextArea
+                placeholderText: qsTr("Question")
+                Layout.fillWidth: true
+                selectByMouse: true
+            }
+            TextArea {
+                id: answerTextArea
+                placeholderText: qsTr("Answer")
+                Layout.fillWidth: true
+                selectByMouse: true
+            }
+            TextArea {
+                id: noteTextArea
+                placeholderText: qsTr("Note (optional)")
+                Layout.fillWidth: true
+                selectByMouse: true
+            }
         }
     }
 
     footer: ToolBar {
         RowLayout {
             anchors.fill: parent
+            enabled: questionTextArea.text && answerTextArea.text
             ToolButton {
                 text: qsTr("Add and New")
                 Layout.fillWidth: true
