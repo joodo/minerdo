@@ -9,7 +9,6 @@ QtObject {
         "name": "Default Notebook",
     }
     property var currentEntry
-    property int currentEntryRow
     property var entryModel: EntryModel {}
     property int reviewCount: 0
 }

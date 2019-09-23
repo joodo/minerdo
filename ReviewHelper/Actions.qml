@@ -8,15 +8,40 @@ QtObject {
     function openNotebook() {
         //EntryModel.open()
     }
+
     function newEntry(entry) {
         entry["status"] = EntryModel.New
+        entry["pass_times"] = 0
+        entry["last_reviewed"] = Date.now()
         States.entryModel.append(entry)
     }
-    function updateEntry(row, entry) {
-        let e = Object.assign(States.currentEntry, entry)
-        States.entryModel.update(row, e)
+
+    function updateCurrentEntry(newEntry) {
+        let e = Object.assign(States.currentEntry, newEntry)
+        States.entryModel.update(e)
     }
-    function removeEntry(row) {
-        States.entryModel.remove(row)
+
+    function removeCurrentEntry() {
+        States.entryModel.remove(States.currentEntry.index)
+    }
+
+    function pickRandomEntry() {
+        States.currentEntry = States.entryModel.random()
+    }
+
+    function markCurrentEntry(status) {
+        let pass_times = 0
+        if (status === EntryModel.Firmly) {
+            pass_times = States.currentEntry.pass_times + 1
+        }
+
+        let last_reviewed = Date.now()
+
+        let entry = Object.assign(States.currentEntry, {
+                                  pass_times,
+                                  status,
+                                  last_reviewed,
+                              })
+        States.entryModel.update(entry)
     }
 }

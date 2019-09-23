@@ -111,12 +111,11 @@ Page {
                 target: button1
                 text: qsTr("Update")
                 onClicked: {
-                    Actions.updateEntry(States.currentEntryRow,
-                                             {
-                                                 "question": questionTextArea.text,
-                                                 "answer": answerTextArea.text,
-                                                 "note": noteTextArea.text,
-                                             })
+                    Actions.updateCurrentEntry({
+                                                   "question": questionTextArea.text,
+                                                   "answer": answerTextArea.text,
+                                                   "note": noteTextArea.text,
+                                               })
                     entryEditPage.backTriggered()
                 }
             }
@@ -124,7 +123,7 @@ Page {
                 target: button2
                 text: qsTr("Remove")
                 onClicked: {
-                    Actions.removeEntry(States.currentEntryRow)
+                    Actions.removeCurrentEntry()
                     entryEditPage.backTriggered()
                 }
             }

@@ -11,8 +11,6 @@ Page {
 
     title: States.currentNotebook.name
 
-    property var currentEntry: States.entryModel.random()
-
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
@@ -53,35 +51,35 @@ Page {
                     Label {
                         anchors.fill: parent
                         wrapMode: Text.Wrap
-                        text: reviewPage.currentEntry.question
+                        text: States.currentEntry.question
                     }
                 }
 
                 Pane {
                     id: answerPane
 
-                    visible: false
+                    visible: !answerMask.visible
                     background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
                     Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
                     Layout.fillWidth: true
                     Label {
                         anchors.fill: parent
                         wrapMode: Text.Wrap
-                        text: reviewPage.currentEntry.answer
+                        text: States.currentEntry.answer
                     }
                 }
 
                 Pane {
                     id: notePane
 
-                    visible: false
+                    visible: !answerMask.visible
                     background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
                     Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
                     Layout.fillWidth: true
                     Label {
                         anchors.fill: parent
                         wrapMode: Text.Wrap
-                        text: reviewPage.currentEntry.note
+                        text: States.currentEntry.note
                     }
                 }
             }
@@ -92,6 +90,7 @@ Page {
 
     footer: ToolBar {
         Label {
+            id: answerMask
             anchors.fill: parent
             background: Rectangle { color: Material.color(Material.BlueGrey) }
             z: 1
@@ -99,30 +98,39 @@ Page {
             verticalAlignment: Qt.AlignVCenter; horizontalAlignment: Qt.AlignHCenter
             MouseArea {
                 anchors.fill: parent
-                onClicked: {
-                    answerPane.visible = true
-                    notePane.visible = true
-                    parent.visible = false
-                }
+                onClicked: parent.visible = false
             }
         }
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                text: qsTr("Pass")
+                text: qsTr("Remember")
                 Layout.fillWidth: true
                 onClicked: {
                     States.reviewCount += 1
-                    reviewPage.currentEntry = States.entryModel.random()
+                    Actions.markCurrentEntry(EntryModel.Temporarily)
+                    Actions.pickRandomEntry()
+                    answerMask.visible = true
                 }
-            }
-            ToolButton {
-                text: qsTr("NVS")
-                Layout.fillWidth: true
             }
             ToolButton {
                 text: qsTr("Forgot")
                 Layout.fillWidth: true
+                onClicked: {
+                    Actions.markCurrentEntry(EntryModel.Forgot)
+                    Actions.pickRandomEntry()
+                    answerMask.visible = true
+                }
+            }
+            ToolButton {
+                text: qsTr("Memorized")
+                Layout.fillWidth: true
+                onClicked: {
+                    States.reviewCount += 1
+                    Actions.markCurrentEntry(EntryModel.Firmly)
+                    Actions.pickRandomEntry()
+                    answerMask.visible = true
+                }
             }
         }
     }

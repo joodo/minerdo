@@ -22,14 +22,14 @@ void EntryModel::append(const QJsonObject &entry)
     select();
 }
 
-void EntryModel::update(int row, const QJsonObject &entry)
+void EntryModel::update(const QJsonObject &entry)
 {
     auto rec = record();
     for (auto key : entry.keys()) {
         if (!rec.contains(key)) continue;
         rec.setValue(key, entry[key].toVariant());
     }
-    setRecord(row, rec);
+    setRecord(entry["index"].toInt(), rec);
 }
 
 void EntryModel::remove(int index)
@@ -45,6 +45,7 @@ QJsonObject EntryModel::get(int index)
     for (int i = 0; i < rec.count(); i++) {
         object.insert(rec.fieldName(i), QJsonValue::fromVariant(rec.value(i)));
     }
+    object["index"] = index;
     return object;
 }
 
@@ -58,6 +59,10 @@ QJsonObject EntryModel::random()
         totalWeight += w;
         weights.append(w);
     }
+    if (totalWeight < 0.01) {
+        return get(QRandomGenerator::global()->bounded(rowCount()));
+    }
+
     auto rand = QRandomGenerator::global()->bounded(totalWeight);
 
     for (int i = 0; i < weights.length(); i++) {
@@ -72,7 +77,7 @@ QJsonObject EntryModel::random()
 
 qreal EntryModel::weight(const QSqlRecord &entry)
 {
-    auto lastReviewedTime = entry.value("last_reviewed").toDateTime();
+    auto lastReviewedTime = QDateTime::fromMSecsSinceEpoch(entry.value("last_reviewed").toLongLong());
     auto daysToNow = lastReviewedTime.daysTo(QDateTime::currentDateTime());
     auto secsToNow = lastReviewedTime.secsTo(QDateTime::currentDateTime());
 
