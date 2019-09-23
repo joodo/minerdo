@@ -11,4 +11,5 @@ QtObject {
     property var currentEntry
     property int currentEntryRow
     property var entryModel: EntryModel {}
+    property int reviewCount: 0
 }

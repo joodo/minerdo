@@ -11,6 +11,8 @@ Page {
 
     title: States.currentNotebook.name
 
+    property var currentEntry: States.entryModel.random()
+
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
@@ -24,6 +26,10 @@ Page {
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: reviewPage.title
+            }
+            ToolButton {
+                text: "" + States.reviewCount
+                onClicked: States.reviewCount = 0
             }
         }
     }
@@ -47,7 +53,7 @@ Page {
                     Label {
                         anchors.fill: parent
                         wrapMode: Text.Wrap
-                        text: "Question Question Question\nQuestion Question Question Question Question Question Question Question Question Question Question Question Question Question Question Question Question Question Question Question"
+                        text: reviewPage.currentEntry.question
                     }
                 }
 
@@ -61,7 +67,7 @@ Page {
                     Label {
                         anchors.fill: parent
                         wrapMode: Text.Wrap
-                        text: "Answer"
+                        text: reviewPage.currentEntry.answer
                     }
                 }
 
@@ -75,7 +81,7 @@ Page {
                     Label {
                         anchors.fill: parent
                         wrapMode: Text.Wrap
-                        text: "Note\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\nNote\n"
+                        text: reviewPage.currentEntry.note
                     }
                 }
             }
@@ -105,6 +111,10 @@ Page {
             ToolButton {
                 text: qsTr("Pass")
                 Layout.fillWidth: true
+                onClicked: {
+                    States.reviewCount += 1
+                    reviewPage.currentEntry = States.entryModel.random()
+                }
             }
             ToolButton {
                 text: qsTr("NVS")

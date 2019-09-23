@@ -4,8 +4,7 @@
 
 EntryModel::EntryModel(QObject *parent) : QSqlTableModel(parent)
 {
-    //setEditStrategy(QSqlTableModel::OnFieldChange);
-    setTable("entrys");
+    setTable("entrys"); // FIXME: typo
     select();
 }
 
@@ -47,6 +46,55 @@ QJsonObject EntryModel::get(int index)
         object.insert(rec.fieldName(i), QJsonValue::fromVariant(rec.value(i)));
     }
     return object;
+}
+
+QJsonObject EntryModel::random()
+{
+    qreal totalWeight = 0;
+    QVector <qreal> weights;
+
+    for (int i = 0; i < rowCount(); i++) {
+        auto w = weight(record(i));
+        totalWeight += w;
+        weights.append(w);
+    }
+    auto rand = QRandomGenerator::global()->bounded(totalWeight);
+
+    for (int i = 0; i < weights.length(); i++) {
+        rand -= weights.at(i);
+        if (rand < 0) {
+            return get(i);
+        }
+    }
+
+    return get(rowCount() - 1);
+}
+
+qreal EntryModel::weight(const QSqlRecord &entry)
+{
+    auto lastReviewedTime = entry.value("last_reviewed").toDateTime();
+    auto daysToNow = lastReviewedTime.daysTo(QDateTime::currentDateTime());
+    auto secsToNow = lastReviewedTime.secsTo(QDateTime::currentDateTime());
+
+    switch (entry.value("status").toInt())
+    {
+    case EntryModel::New:
+        return 5.0;
+    case EntryModel::Forgot:
+        return secsToNow > 2*60? 10 : 0;
+    case EntryModel::Temporarily:
+        return daysToNow > 1? 10 : 0;
+    case EntryModel::Firmly:
+    {
+        auto w = daysToNow < 30? daysToNow : 30;
+        auto t = entry.value("pass_times").toInt();
+        t = t < 3? t : 3;
+        return w / t;
+    }
+    default:
+        qWarning() << "Entry status undefined: " << entry.value("status").toInt();
+        return 0;
+    }
 }
 
 QHash<int, QByteArray> EntryModel::roleNames() const

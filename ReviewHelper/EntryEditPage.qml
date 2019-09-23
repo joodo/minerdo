@@ -82,12 +82,11 @@ Page {
                 target: button1
                 text: qsTr("Add and New")
                 onClicked: {
-                    States.entryModel.append({
-                                            "question": questionTextArea.text,
-                                            "answer": answerTextArea.text,
-                                            "note": noteTextArea.text,
-                                            "status": 0,
-                                        })
+                    Actions.newEntry({
+                                         "question": questionTextArea.text,
+                                         "answer": answerTextArea.text,
+                                         "note": noteTextArea.text,
+                                     })
                     questionTextArea.clear()
                     answerTextArea.clear()
                     noteTextArea.clear()
@@ -97,12 +96,11 @@ Page {
                 target: button2
                 text: qsTr("Add")
                 onClicked: {
-                    States.entryModel.append({
-                                            "question": questionTextArea.text,
-                                            "answer": answerTextArea.text,
-                                            "note": noteTextArea.text,
-                                            "status": 0,
-                                        })
+                    Actions.newEntry({
+                                         "question": questionTextArea.text,
+                                         "answer": answerTextArea.text,
+                                         "note": noteTextArea.text,
+                                     })
                     entryEditPage.backTriggered()
                 }
             }
@@ -113,14 +111,12 @@ Page {
                 target: button1
                 text: qsTr("Update")
                 onClicked: {
-                    States.entryModel.update(
-                                States.currentEntryRow,
-                                Object.assign(States.currentEntry, {
-                                                  "question": questionTextArea.text,
-                                                  "answer": answerTextArea.text,
-                                                  "note": noteTextArea.text,
-                                              })
-                                )
+                    Actions.updateEntry(States.currentEntryRow,
+                                             {
+                                                 "question": questionTextArea.text,
+                                                 "answer": answerTextArea.text,
+                                                 "note": noteTextArea.text,
+                                             })
                     entryEditPage.backTriggered()
                 }
             }
@@ -128,7 +124,7 @@ Page {
                 target: button2
                 text: qsTr("Remove")
                 onClicked: {
-                    States.entryModel.remove(States.currentEntryIndex)
+                    Actions.removeEntry(States.currentEntryRow)
                     entryEditPage.backTriggered()
                 }
             }

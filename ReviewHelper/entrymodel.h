@@ -4,10 +4,11 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QSqlQuery>
 #include <QSqlRecord>
 #include <QJsonObject>
 #include <QSqlTableModel>
+#include <QRandomGenerator>
+#include <QDateTime>
 
 class EntryModel : public QSqlTableModel
 {
@@ -15,12 +16,24 @@ class EntryModel : public QSqlTableModel
 public:
     EntryModel(QObject* parent = nullptr);
 
+public:
+    enum Status {
+        New,
+        Forgot,
+        Temporarily,
+        Firmly,
+    };
+    Q_ENUM(Status)
+
 public slots:
     void append(const QJsonObject& entry);
     void update(int row, const QJsonObject& entry);
     void remove(int index);
     QJsonObject get(int index);
+    QJsonObject random();
+
 private:
+    qreal weight(const QSqlRecord& entry);
 
     // QAbstractItemModel interface
 public:
