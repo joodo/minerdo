@@ -75,6 +75,40 @@ QJsonObject EntryModel::random()
     return get(rowCount() - 1);
 }
 
+QJsonObject EntryModel::statusCount()
+{
+    int newCount = 0;
+    int forgotCount = 0;
+    int temporarilyCount = 0;
+    int firmlyCount = 0;
+
+    for (int i = 0; i < rowCount(); i++) {
+        switch (record(i).value("status").toInt()) {
+        case EntryModel::New:
+            newCount += 1;
+            break;
+        case EntryModel::Forgot:
+            forgotCount += 1;
+            break;
+        case EntryModel::Temporarily:
+            temporarilyCount += 1;
+            break;
+        case EntryModel::Firmly:
+            firmlyCount += 1;
+            break;
+        default: ;
+        }
+    }
+
+    QJsonObject re;
+    re["new"] = newCount;
+    re["forgot"] = forgotCount;
+    re["temporarily"] = temporarilyCount;
+    re["firmly"] = firmlyCount;
+
+    return re;
+}
+
 qreal EntryModel::weight(const QSqlRecord &entry)
 {
     auto lastReviewedTime = QDateTime::fromMSecsSinceEpoch(entry.value("last_reviewed").toLongLong());

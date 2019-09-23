@@ -29,8 +29,10 @@ public slots:
     void append(const QJsonObject& entry);
     void update(const QJsonObject& entry);
     void remove(int index);
+
     QJsonObject get(int index);
     QJsonObject random();
+    QJsonObject statusCount();
 
 private:
     qreal weight(const QSqlRecord& entry);

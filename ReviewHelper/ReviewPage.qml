@@ -12,8 +12,13 @@ Page {
     title: States.currentNotebook.name
 
     header: ToolBar {
+        height: implicitHeight + progressBar.height
         RowLayout {
-            anchors.fill: parent
+            anchors {
+                left: parent.left; right: parent.right; top: parent.top
+                bottom: progressBar.top
+            }
+
             ToolButton {
                 text: "<"
                 onClicked: reviewPage.backClicked()
@@ -28,6 +33,64 @@ Page {
             ToolButton {
                 text: "" + States.reviewCount
                 onClicked: States.reviewCount = 0
+            }
+        }
+
+        Control {
+            id: progressBar
+
+            property var statusCount
+
+            function update() {
+                statusCount = States.entryModel.statusCount()
+            }
+            Component.onCompleted: update()
+
+            anchors {
+                left: parent.left; right: parent.right; bottom: parent.bottom
+            }
+            height: UI.dp(8)
+
+            ToolTip.visible: hovered
+            ToolTip.text: (qsTr("New: %1, Forgotten: %2, Remembered: %3, Memorized: %4")
+                           .arg(progressBar.statusCount.new)
+                           .arg(progressBar.statusCount.forgot)
+                           .arg(progressBar.statusCount.temporarily)
+                           .arg(progressBar.statusCount.firmly)
+                           )
+
+            RowLayout {
+                anchors.fill: parent
+                spacing: 0
+                z: -1
+                Rectangle {
+                    visible: implicitWidth !== 0
+                    implicitWidth: progressBar.statusCount.new
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: Material.color(Material.Blue)
+                }
+                Rectangle {
+                    visible: implicitWidth !== 0
+                    implicitWidth: progressBar.statusCount.forgot
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: Material.color(Material.Orange)
+                }
+                Rectangle {
+                    visible: implicitWidth !== 0
+                    implicitWidth: progressBar.statusCount.temporarily
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: Material.color(Material.Teal)
+                }
+                Rectangle {
+                    visible: implicitWidth !== 0
+                    implicitWidth: progressBar.statusCount.firmly
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: Material.color(Material.Green)
+                }
             }
         }
     }
@@ -111,6 +174,7 @@ Page {
                     Actions.markCurrentEntry(EntryModel.Temporarily)
                     Actions.pickRandomEntry()
                     answerMask.visible = true
+                    progressBar.update()
                 }
             }
             ToolButton {
@@ -120,6 +184,7 @@ Page {
                     Actions.markCurrentEntry(EntryModel.Forgot)
                     Actions.pickRandomEntry()
                     answerMask.visible = true
+                    progressBar.update()
                 }
             }
             ToolButton {
@@ -130,6 +195,7 @@ Page {
                     Actions.markCurrentEntry(EntryModel.Firmly)
                     Actions.pickRandomEntry()
                     answerMask.visible = true
+                    progressBar.update()
                 }
             }
         }
