@@ -32,3 +32,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     entrymodel.h
+
+macx {
+    ICON = logo.icns
+}
+
+win32 {
+    RC_ICONS = logo.ico
+}
