@@ -17,90 +17,13 @@ ApplicationWindow {
     StackView {
         id: stackView
 
-        property var clickedItemRect
-        property string clickedItemName
-
         anchors.fill: parent
         initialItem: noteBookList
-
-        /*pushEnter: Transition {
-            XAnimator {
-                from: stackView.clickedItemRect.x
-                to: 0
-                duration: UI.cardExpandDuration
-                easing.type: Easing.OutCubic
-            }
-            YAnimator {
-                from: stackView.clickedItemRect.y
-                to: 0
-                duration: UI.cardExpandDuration
-                easing.type: Easing.OutCubic
-            }
-            PropertyAnimation {
-                property: "opacity"
-                from: 0
-                to: 1
-                duration: UI.cardExpandDuration
-                easing.type: Easing.OutCubic
-            }
-            PropertyAnimation {
-                property: "width"
-                from: stackView.clickedItemRect.width
-                to: width
-                duration: UI.cardExpandDuration
-                easing.type: Easing.OutCubic
-            }
-            PropertyAnimation {
-                property: "height"
-                from: stackView.clickedItemRect.height
-                to: height
-                duration: UI.cardExpandDuration
-                easing.type: Easing.OutCubic
-            }
-        }
-        pushExit: Transition {
-            PauseAnimation {
-                duration: UI.cardExpandDuration
-            }
-        }
-        popEnter: null
-        popExit: Transition {
-            XAnimator {
-                to: stackView.clickedItemRect.x
-                from: 0
-                duration: UI.cardExpandDuration
-                easing.type: Easing.InOutCubic
-            }
-            YAnimator {
-                to: stackView.clickedItemRect.y
-                from: 0
-                duration: UI.cardExpandDuration
-                easing.type: Easing.InOutCubic
-            }
-            PropertyAnimation {
-                property: "width"
-                to: stackView.clickedItemRect.width
-                from: width
-                duration: UI.cardExpandDuration
-                easing.type: Easing.InOutCubic
-            }
-            PropertyAnimation {
-                property: "height"
-                to: stackView.clickedItemRect.height
-                from: height
-                duration: UI.cardExpandDuration
-                easing.type: Easing.InOutCubic
-            }
-        }*/
 
         Component {
             id: noteBookList
             NotebookListPage {
-                onItemClicked: {
-                    stackView.clickedItemRect = rect
-                    stackView.clickedItemName = name
-                    stackView.push(noteBookDetailPage)
-                }
+                onItemClicked: stackView.push(noteBookDetailPage)
             }
         }
 

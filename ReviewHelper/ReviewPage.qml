@@ -115,58 +115,53 @@ Page {
     ScrollView {
         anchors.fill: parent
         width: parent.width
-        contentWidth: width
+        contentWidth: contentItem.width
+        padding: UI.dp(20)
 
-        Pane {
-            topPadding: UI.dp(20); bottomPadding: UI.dp(20)
-            anchors { left: parent.left; right: parent.right; margins: UI.dp(20) }
-            ColumnLayout {
-                anchors.fill: parent
-                spacing: UI.dp(16)
+        ColumnLayout {
+            width: parent.width
+            spacing: UI.dp(16)
 
-                Pane {
-                    background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
-                    Material.background: Material.color(Material.LightBlue, UI.backgroundShade)
-                    Layout.fillWidth: true
-                    Label {
-                        anchors.fill: parent
-                        wrapMode: Text.Wrap
-                        text: States.currentEntry.question
-                    }
-                }
-
-                Pane {
-                    id: answerPane
-
-                    visible: !answerMask.visible
-                    background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
-                    Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
-                    Layout.fillWidth: true
-                    Label {
-                        anchors.fill: parent
-                        wrapMode: Text.Wrap
-                        text: States.currentEntry.answer
-                    }
-                }
-
-                Pane {
-                    id: notePane
-
-                    visible: !answerMask.visible
-                    background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
-                    Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
-                    Layout.fillWidth: true
-                    Label {
-                        anchors.fill: parent
-                        wrapMode: Text.Wrap
-                        text: States.currentEntry.note
-                    }
+            Pane {
+                background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
+                Material.background: Material.color(Material.LightBlue, UI.backgroundShade)
+                Layout.fillWidth: true
+                Label {
+                    anchors.fill: parent
+                    wrapMode: Text.Wrap
+                    text: States.currentEntry.question
                 }
             }
 
-        }
+            Pane {
+                id: answerPane
 
+                visible: !answerMask.visible
+                background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
+                Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
+                Layout.fillWidth: true
+                Label {
+                    anchors.fill: parent
+                    wrapMode: Text.Wrap
+                    text: States.currentEntry.answer
+                }
+            }
+
+            Pane {
+                id: notePane
+
+                visible: !answerMask.visible
+                background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
+                Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
+                Layout.fillWidth: true
+                Label {
+                    anchors.fill: parent
+                    wrapMode: Text.Wrap
+                    text: States.currentEntry.note
+                }
+            }
         }
+    }
 
     footer: ToolBar {
         Label {
