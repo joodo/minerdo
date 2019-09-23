@@ -35,27 +35,26 @@ Page {
         anchors.fill: parent
         padding: UI.dp(20)
         contentWidth: contentItem.width
+        focus: true
 
         ColumnLayout {
             anchors { left: parent.left; right: parent.right }
 
-            TextArea {
+            EntryTextArea {
                 id: questionTextArea
                 placeholderText: qsTr("Question")
                 Layout.fillWidth: true
-                selectByMouse: true
+                focus: true
             }
-            TextArea {
+            EntryTextArea {
                 id: answerTextArea
                 placeholderText: qsTr("Answer")
                 Layout.fillWidth: true
-                selectByMouse: true
             }
-            TextArea {
+            EntryTextArea {
                 id: noteTextArea
                 placeholderText: qsTr("Note (optional)")
                 Layout.fillWidth: true
-                selectByMouse: true
             }
         }
     }
@@ -80,6 +79,7 @@ Page {
             name: "new"
             PropertyChanges {
                 target: button1
+                implicitWidth: 1
                 text: qsTr("Add and New")
                 onClicked: {
                     Actions.newEntry({
@@ -94,6 +94,7 @@ Page {
             }
             PropertyChanges {
                 target: button2
+                implicitWidth: 1
                 text: qsTr("Add")
                 onClicked: {
                     Actions.newEntry({
@@ -141,4 +142,11 @@ Page {
             }
         }
     ]
+
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Return && event.modifiers === Qt.ControlModifier) {
+            button1.clicked()
+            event.accepted = true
+        }
+    }
 }

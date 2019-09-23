@@ -11,5 +11,6 @@
         <file>NotebookEditPage.qml</file>
         <file>EntryEditPage.qml</file>
         <file>Actions.qml</file>
+        <file>EntryTextArea.qml</file>
     </qresource>
 </RCC>

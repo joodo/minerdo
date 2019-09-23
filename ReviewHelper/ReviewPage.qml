@@ -9,6 +9,23 @@ Page {
     id: reviewPage
     signal backClicked()
 
+    function hideAnswerMask() {
+        answerMask.visible = false
+    }
+
+    function markButtonClicked(mark) {
+        if (answerMask.visible) return
+
+        Actions.markCurrentEntry(mark)
+        Actions.pickRandomEntry()
+        answerMask.visible = true
+        progressBar.update()
+
+        if (mark !== EntryModel.Forgot) {
+            States.reviewCount += 1
+        }
+    }
+
     title: States.currentNotebook.name
 
     header: ToolBar {
@@ -160,44 +177,53 @@ Page {
             text: qsTr("Show Answer")
             verticalAlignment: Qt.AlignVCenter; horizontalAlignment: Qt.AlignHCenter
             MouseArea {
+                id: answerMaskMouseArea
                 anchors.fill: parent
-                onClicked: parent.visible = false
+                onClicked: reviewPage.hideAnswerMask()
             }
         }
         RowLayout {
             anchors.fill: parent
             ToolButton {
+                implicitWidth: 1
                 text: qsTr("Remember")
                 Layout.fillWidth: true
-                onClicked: {
-                    States.reviewCount += 1
-                    Actions.markCurrentEntry(EntryModel.Temporarily)
-                    Actions.pickRandomEntry()
-                    answerMask.visible = true
-                    progressBar.update()
-                }
+                onClicked: reviewPage.markButtonClicked(EntryModel.Temporarily)
             }
             ToolButton {
+                implicitWidth: 1
                 text: qsTr("Forgot")
                 Layout.fillWidth: true
-                onClicked: {
-                    Actions.markCurrentEntry(EntryModel.Forgot)
-                    Actions.pickRandomEntry()
-                    answerMask.visible = true
-                    progressBar.update()
-                }
+                onClicked: reviewPage.markButtonClicked(EntryModel.Forgot)
             }
             ToolButton {
+                implicitWidth: 1
                 text: qsTr("Memorized")
                 Layout.fillWidth: true
-                onClicked: {
-                    States.reviewCount += 1
-                    Actions.markCurrentEntry(EntryModel.Firmly)
-                    Actions.pickRandomEntry()
-                    answerMask.visible = true
-                    progressBar.update()
-                }
+                onClicked: reviewPage.markButtonClicked(EntryModel.Firmly)
             }
+        }
+    }
+
+    Keys.onPressed: {
+        event.accepted = true
+
+        switch (event.key) {
+        case Qt.Key_Return:
+        case Qt.Key_Space:
+            reviewPage.hideAnswerMask()
+            break
+        case Qt.Key_R:
+            reviewPage.markButtonClicked(EntryModel.Temporarily)
+            break
+        case Qt.Key_F:
+            reviewPage.markButtonClicked(EntryModel.Forgot)
+            break
+        case Qt.Key_M:
+            reviewPage.markButtonClicked(EntryModel.Firmly)
+            break
+        default:
+            event.accepted = false
         }
     }
 }
