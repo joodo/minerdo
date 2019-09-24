@@ -13,6 +13,7 @@ ApplicationWindow {
     minimumWidth: UI.cardWidth + UI.dp(48)
     minimumHeight: UI.dp(360)
     title: qsTr("Review Helper")
+    flags: Qt.WindowFullscreenButtonHint
 
     StackView {
         id: stackView
