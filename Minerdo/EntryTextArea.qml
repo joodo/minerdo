@@ -8,6 +8,7 @@ import Minerdo 1.0
 TextArea {
     id: entryTextArea
     selectByMouse: true
+    wrapMode: TextEdit.Wrap
     Keys.onPressed: {
         if (event.key === Qt.Key_Tab) {
             event.accepted = true
