@@ -31,10 +31,10 @@ int main(int argc, char *argv[])
 
     auto context = engine.rootContext();
 
-    qmlRegisterType<EntryModel>("ReviewHelper", 1, 0, "EntryModel");
-    qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "ReviewHelper", 1, 0, "UI");
-    qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "ReviewHelper", 1, 0, "States");
-    qmlRegisterSingletonType(QUrl("qrc:/Actions.qml"), "ReviewHelper", 1, 0, "Actions");
+    qmlRegisterType<EntryModel>("Minerdo", 1, 0, "EntryModel");
+    qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "Minerdo", 1, 0, "UI");
+    qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "Minerdo", 1, 0, "States");
+    qmlRegisterSingletonType(QUrl("qrc:/Actions.qml"), "Minerdo", 1, 0, "Actions");
 
     engine.load(url);
 

@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.13
 import QtQuick.Controls.Material.impl 2.12
 import QtQuick.Layouts 1.13
 
-import ReviewHelper 1.0
+import Minerdo 1.0
 
 Pane {
     id: noteBookCard

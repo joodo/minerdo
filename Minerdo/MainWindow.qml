@@ -3,7 +3,7 @@ import QtQuick.Controls 2.13
 import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
 
-import ReviewHelper 1.0
+import Minerdo 1.0
 
 ApplicationWindow {
     id: window
@@ -12,7 +12,7 @@ ApplicationWindow {
     height: 480
     minimumWidth: UI.cardWidth + UI.dp(48)
     minimumHeight: UI.dp(360)
-    title: qsTr("Review Helper")
+    title: qsTr("Minerdo")
     flags: Qt.WindowFullscreenButtonHint
 
     StackView {

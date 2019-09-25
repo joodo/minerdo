@@ -2,7 +2,7 @@ pragma Singleton
 
 import QtQuick 2.13
 
-import ReviewHelper 1.0
+import Minerdo 1.0
 
 QtObject {
     function openNotebook() {
