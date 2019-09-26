@@ -34,8 +34,10 @@ void EntryModel::update(const QJsonObject &entry)
 
 void EntryModel::remove(int index)
 {
+    beginRemoveRows(QModelIndex(), index, index);
     removeRow(index);
     select();
+    endRemoveRows();
 }
 
 QJsonObject EntryModel::get(int index)

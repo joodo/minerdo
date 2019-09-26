@@ -8,6 +8,7 @@ import Minerdo 1.0
 Page {
     id: reviewPage
     signal backClicked()
+    signal editTriggered()
 
     function hideAnswerMask() {
         answerMask.visible = false
@@ -50,6 +51,10 @@ Page {
             ToolButton {
                 text: "" + States.reviewCount
                 onClicked: States.reviewCount = 0
+            }
+            ToolButton {
+                text: "✎"
+                onClicked: reviewPage.editTriggered()
             }
         }
 

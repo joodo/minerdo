@@ -16,6 +16,10 @@ QtObject {
         States.entryModel.append(entry)
     }
 
+    function setCurrentEntry(index) {
+        States.currentEntryModel.index = index
+    }
+
     function updateCurrentEntry(newEntry) {
         let e = Object.assign(States.currentEntry, newEntry)
         States.entryModel.update(e)
@@ -26,7 +30,7 @@ QtObject {
     }
 
     function pickRandomEntry() {
-        States.currentEntry = States.entryModel.random()
+        setCurrentEntry(Math.floor(Math.random() * States.entryModel.rowCount()))
     }
 
     function markCurrentEntry(status) {

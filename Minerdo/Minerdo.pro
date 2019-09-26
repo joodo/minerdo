@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         entrymodel.cpp \
+        itemmodel.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -31,7 +32,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    entrymodel.h
+    entrymodel.h \
+    itemmodel.h
 
 macx {
     ICON = logo.icns

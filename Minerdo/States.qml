@@ -8,7 +8,13 @@ QtObject {
         "id": -1,
         "name": "Default Notebook",
     }
-    property var currentEntry
     property var entryModel: EntryModel {}
+    property var currentEntryModel: ItemModel {
+        model: entryModel
+        onItemRemoved: {
+            index = Math.floor(Math.random() * model.rowCount())
+        }
+    }
+    property var currentEntry: currentEntryModel.item
     property int reviewCount: 0
 }

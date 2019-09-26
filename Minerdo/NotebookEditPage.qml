@@ -35,7 +35,7 @@ Page {
         model: States.entryModel
         delegate: ItemDelegate {
             onClicked: {
-                States.currentEntry = States.entryModel.get(index)
+                Actions.setCurrentEntry(index)
                 notebookEditPage.newTriggered()
             }
 

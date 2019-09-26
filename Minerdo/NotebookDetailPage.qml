@@ -8,9 +8,9 @@ import Minerdo 1.0
 Page {
     id: notebookDetailPage
 
-    signal backClicked()
-    signal reviewClicked()
-    signal editTriggered()
+    signal backClicked
+    signal reviewClicked
+    signal editTriggered
 
     title: States.currentNotebook.name
 
@@ -20,7 +20,6 @@ Page {
             ToolButton {
                 text: "<"
                 onClicked: notebookDetailPage.backClicked()
-
             }
             Label {
                 Layout.fillWidth: true
@@ -30,11 +29,10 @@ Page {
             }
         }
     }
-
-
     Column {
         anchors.centerIn: parent
         spacing: UI.dp(8)
+
         Button {
             text: qsTr("Review")
             width: UI.dp(160)

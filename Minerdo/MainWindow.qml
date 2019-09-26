@@ -41,6 +41,7 @@ ApplicationWindow {
             id: reviewPage
             ReviewPage {
                 onBackClicked: stackView.pop()
+                onEditTriggered: stackView.push(entryEditPage)
             }
         }
 
