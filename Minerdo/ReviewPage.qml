@@ -155,11 +155,12 @@ Page {
             Pane {
                 id: notePane
 
-                visible: !answerMask.visible
+                visible: !answerMask.visible && noteLabel.text
                 background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
                 Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
                 Layout.fillWidth: true
                 Label {
+                    id: noteLabel
                     anchors.fill: parent
                     wrapMode: Text.Wrap
                     text: States.currentEntry.note
