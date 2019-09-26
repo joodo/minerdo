@@ -30,7 +30,8 @@ QtObject {
     }
 
     function pickRandomEntry() {
-        setCurrentEntry(Math.floor(Math.random() * States.entryModel.rowCount()))
+        let randomIndex = Math.floor(Math.random() * States.entryModel.rowCount())
+        setCurrentEntry(randomIndex)
     }
 
     function markCurrentEntry(status) {

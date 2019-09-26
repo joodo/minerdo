@@ -36,7 +36,7 @@ Page {
         delegate: ItemDelegate {
             onClicked: {
                 Actions.setCurrentEntry(index)
-                notebookEditPage.newTriggered()
+                notebookEditPage.editTriggered()
             }
 
             anchors {
@@ -52,10 +52,7 @@ Page {
     RoundButton {
         text: "+"
 
-        onClicked: {
-            States.currentEntry = null
-            notebookEditPage.newTriggered()
-        }
+        onClicked: notebookEditPage.newTriggered()
 
         Material.elevation: 10
         z: Material.elevation

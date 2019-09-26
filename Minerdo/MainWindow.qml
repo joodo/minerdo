@@ -19,43 +19,52 @@ ApplicationWindow {
         id: stackView
 
         anchors.fill: parent
-        initialItem: noteBookList
+        initialItem: noteBookListComponent
 
         Component {
-            id: noteBookList
+            id: noteBookListComponent
             NotebookListPage {
-                onItemClicked: stackView.push(noteBookDetailPage)
+                onItemClicked: stackView.push(noteBookDetailPageComponent)
             }
         }
 
         Component {
-            id: noteBookDetailPage
+            id: noteBookDetailPageComponent
             NotebookDetailPage {
                 onBackClicked: stackView.pop()
-                onReviewClicked: stackView.push(reviewPage)
-                onEditTriggered: stackView.push(notebookEditPage)
+                onReviewClicked: stackView.push(reviewPageComponent)
+                onEditTriggered: stackView.push(notebookEditPageComponent)
             }
         }
 
         Component {
-            id: reviewPage
+            id: reviewPageComponent
             ReviewPage {
                 onBackClicked: stackView.pop()
-                onEditTriggered: stackView.push(entryEditPage)
+                onEditTriggered: stackView.push(entryEditPageComponent)
             }
         }
 
         Component {
-            id: notebookEditPage
+            id: notebookEditPageComponent
             NotebookEditPage {
                 onBackTriggered: stackView.pop()
-                onNewTriggered: stackView.push(entryEditPage)
+                onNewTriggered: stackView.push(entryNewPageComponent)
+                onEditTriggered: stackView.push(entryEditPageComponent)
             }
         }
 
         Component {
-            id: entryEditPage
+            id: entryEditPageComponent
             EntryEditPage {
+                state: "edit"
+                onBackTriggered: stackView.pop()
+            }
+        }
+        Component {
+            id: entryNewPageComponent
+            EntryEditPage {
+                state: "new"
                 onBackTriggered: stackView.pop()
             }
         }

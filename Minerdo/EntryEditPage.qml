@@ -12,8 +12,6 @@ Page {
 
     signal backTriggered()
 
-    state: States.currentEntry? "edit" : "new"
-
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
