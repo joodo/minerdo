@@ -30,7 +30,7 @@ QtObject {
     }
 
     function pickRandomEntry() {
-        let randomIndex = Math.floor(Math.random() * States.entryModel.rowCount())
+        let randomIndex = States.entryModel.randomIndex()
         setCurrentEntry(randomIndex)
     }
 

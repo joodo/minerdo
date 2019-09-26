@@ -31,7 +31,7 @@ public slots:
     void remove(int index);
 
     QJsonObject get(int index);
-    QJsonObject random();
+    int randomIndex();
     QJsonObject statusCount();
 
 private:

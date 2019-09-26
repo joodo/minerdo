@@ -51,7 +51,7 @@ QJsonObject EntryModel::get(int index)
     return object;
 }
 
-QJsonObject EntryModel::random()
+int EntryModel::randomIndex()
 {
     qreal totalWeight = 0;
     QVector <qreal> weights;
@@ -62,7 +62,7 @@ QJsonObject EntryModel::random()
         weights.append(w);
     }
     if (totalWeight < 0.01) {
-        return get(QRandomGenerator::global()->bounded(rowCount()));
+        return QRandomGenerator::global()->bounded(rowCount());
     }
 
     auto rand = QRandomGenerator::global()->bounded(totalWeight);
@@ -70,11 +70,11 @@ QJsonObject EntryModel::random()
     for (int i = 0; i < weights.length(); i++) {
         rand -= weights.at(i);
         if (rand < 0) {
-            return get(i);
+            return i;
         }
     }
 
-    return get(rowCount() - 1);
+    return rowCount() - 1;
 }
 
 QJsonObject EntryModel::statusCount()

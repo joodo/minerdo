@@ -12,7 +12,7 @@ QtObject {
     property var currentEntryModel: ItemModel {
         model: entryModel
         onItemRemoved: {
-            index = Math.floor(Math.random() * model.rowCount())
+            index = entryModel.randomIndex()
         }
     }
     property var currentEntry: currentEntryModel.item
