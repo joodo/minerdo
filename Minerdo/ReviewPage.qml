@@ -183,6 +183,7 @@ Page {
             }
         }
         RowLayout {
+            enabled: !answerMask.visible
             anchors.fill: parent
             ToolButton {
                 implicitWidth: 1
@@ -205,7 +206,8 @@ Page {
         }
     }
 
-    Keys.onPressed: {
+    // TODO: find a more gentle way to solve this
+    Keys.onReleased: {
         event.accepted = true
 
         switch (event.key) {
