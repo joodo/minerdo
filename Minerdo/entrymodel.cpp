@@ -4,7 +4,7 @@
 
 EntryModel::EntryModel(QObject *parent) : QSqlTableModel(parent)
 {
-    setTable("entrys"); // FIXME: typo
+    setTable("entries");
     select();
 }
 
