@@ -37,10 +37,7 @@ Page {
             text: qsTr("Review")
             width: UI.dp(160)
             highlighted: true
-            onClicked: {
-                notebookDetailPage.reviewClicked()
-                Actions.pickRandomEntry()
-            }
+            onClicked: notebookDetailPage.reviewClicked()
         }
         Button {
             text: qsTr("Edit")

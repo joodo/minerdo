@@ -39,6 +39,8 @@ Page {
         }
     }
 
+    Component.onCompleted: Actions.pickRandomEntry()
+
     title: States.currentNotebook.name
 
     header: ToolBar {
