@@ -10,7 +10,8 @@ Pane {
     id: noteBookCard
 
     property string text
-    signal clicked
+    signal clicked()
+    signal editClicked()
 
     height: UI.dp(184); width: UI.cardWidth
     padding: 0
@@ -37,7 +38,17 @@ Pane {
 
     Label {
         x: UI.dp(16); y: UI.dp(16)
-        font.pointSize: 32
+        font.pointSize: 24
         text: noteBookCard.text
+    }
+
+    Button {
+        flat: true
+        text: qsTr("Edit")
+        anchors { bottom: parent.bottom; right: parent.right; rightMargin: UI.dp(16) }
+        visible: noteBookCard.hovered
+        background: Item {}
+        highlighted: hovered
+        onClicked: noteBookCard.editClicked()
     }
 }

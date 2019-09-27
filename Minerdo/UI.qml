@@ -23,4 +23,5 @@ QtObject {
     readonly property real cardWidth: dp(344)
 
     readonly property int backgroundShade: Material.theme === Material.Light? Material.Shade100 : Material.Shade500
+    //readonly property int foregroundShade: Material.theme === Material.Light? Material.Shade700 : Material.Shade50
 }

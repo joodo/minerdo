@@ -11,7 +11,6 @@ TextArea {
     wrapMode: TextEdit.Wrap
     Keys.onPressed: {
         if (event.key === Qt.Key_Tab) {
-            event.accepted = true
             if (event.modifiers === Qt.NoModifier) {
                 nextItemInFocusChain().focus = true
             } else if (event.modifiers === Qt.ShiftModifier) {

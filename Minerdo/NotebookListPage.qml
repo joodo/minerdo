@@ -8,18 +8,78 @@ import Minerdo 1.0
 Page {
     id: notebookListPage
 
-    signal itemClicked()
+    signal reviewTriggered()
+    signal editTriggered()
+    signal newTriggered()
 
-    /*header: ToolBar {
+    header: ToolBar {
+        id: toolBar
+        readonly property real maxHeight: UI.dp(240)
+
+        height: maxHeight
+
         Label {
-            anchors.fill: parent
-            horizontalAlignment: Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-            text: window.title
+            fontSizeMode: Text.Fit
+            anchors { left: parent.left; right: parent.right; top: parent.top }
+            padding: UI.dp(18)
+            font.pointSize: 30
+            height: (toolBar.implicitHeight + toolBar.height) / 2
+            text: {
+                const date = new Date()
+                const h = date.getHours()
+                if (h < 12) {
+                    qsTr("Good Morning.")
+                } else if (h < 7) {
+                    qsTr("Good Afternoon.")
+                } else {
+                    qsTr("Good Evening.")
+                }
+            }
         }
-    }*/
+
+        RowLayout {
+            anchors {
+                right: parent.right; bottom: parent.bottom
+            }
+            CollapsableToolButton {
+                expandText: qsTr("Review All")
+                collapsedText: "✓"
+                state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
+                onClicked: notebookListPage.reviewTriggered()
+            }
+            CollapsableToolButton {
+                expandText: qsTr("New Notebook")
+                collapsedText: "＋"
+                state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
+                onClicked: notebookListPage.newTriggered()
+            }
+        }
+    }
+
+    MouseArea {
+        acceptedButtons: Qt.NoButton
+        anchors.fill: parent
+        z: 1
+        onWheel: {
+            wheel.accepted = false
+            if (wheel.angleDelta.y < 0) {
+                if (toolBar.height === toolBar.implicitHeight) return
+                toolBar.height += wheel.angleDelta.y
+                if (toolBar.height < toolBar.implicitHeight) {
+                    toolBar.height = toolBar.implicitHeight
+                }
+            } else {
+                if (scrollView.ScrollBar.vertical.position > 0) return
+                toolBar.height += wheel.angleDelta.y
+                if (toolBar.height > toolBar.maxHeight) {
+                    toolBar.height = toolBar.maxHeight
+                }
+            }
+        }
+    }
 
     ScrollView {
+        id: scrollView
         anchors.fill: parent
         contentWidth: contentItem.width
         padding: UI.dp(20)
@@ -52,7 +112,10 @@ Page {
                     text: "Item " + index
                     onClicked: {
                         Actions.openNotebook()
-                        notebookListPage.itemClicked()
+                        notebookListPage.reviewTriggered()
+                    }
+                    onEditClicked: {
+                        notebookListPage.editTriggered()
                     }
                 }
             }

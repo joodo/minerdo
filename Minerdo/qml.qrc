@@ -13,5 +13,7 @@
         <file>Actions.qml</file>
         <file>EntryTextArea.qml</file>
         <file>Snackbar.qml</file>
+        <file>CollapsableToolButton.qml</file>
+        <file>ColorRadioButton.qml</file>
     </qresource>
 </RCC>

@@ -24,7 +24,9 @@ ApplicationWindow {
         Component {
             id: noteBookListComponent
             NotebookListPage {
-                onItemClicked: stackView.push(noteBookDetailPageComponent)
+                onReviewTriggered: stackView.push(reviewPageComponent)
+                onEditTriggered: stackView.push(notebookEditPageComponent)
+                onNewTriggered: stackView.push(noteBookDetailPageComponent)
             }
         }
 

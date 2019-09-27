@@ -29,24 +29,59 @@ Page {
             }
         }
     }
-    Column {
-        anchors.centerIn: parent
-        spacing: UI.dp(8)
 
-        Button {
-            text: qsTr("Review")
-            width: UI.dp(160)
-            highlighted: true
-            onClicked: notebookDetailPage.reviewClicked()
+    ScrollView {
+        anchors.fill: parent
+        contentWidth: contentItem.width
+        padding: UI.dp(20)
+
+        ColumnLayout {
+            anchors { left: parent.left; right: parent.right }
+            EntryTextArea {
+                Layout.fillWidth: true
+                placeholderText: qsTr("Notebook Name")
+            }
+            Flow {
+                Layout.fillWidth: true
+                ColorRadioButton {
+                    color: Material.Blue
+                }
+                ColorRadioButton {
+                    color: Material.Green
+                }
+                ColorRadioButton {
+                    color: Material.Teal
+                }
+                ColorRadioButton {
+                    color: Material.Amber
+                }
+                ColorRadioButton {
+                    color: Material.Brown
+                }
+                ColorRadioButton {
+                    color: Material.BlueGrey
+                }
+                ColorRadioButton {
+                    color: Material.Pink
+                }
+                ColorRadioButton {
+                    color: Material.Indigo
+                }
+            }
         }
-        Button {
-            text: qsTr("Edit")
-            width: UI.dp(160)
-            onClicked: notebookDetailPage.editTriggered()
-        }
-        Button {
-            text: qsTr("Remove")
-            width: UI.dp(160)
+    }
+
+    footer: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                id: button1
+                Layout.fillWidth: true
+            }
+            ToolButton {
+                id: button2
+                Layout.fillWidth: true
+            }
         }
     }
 }
