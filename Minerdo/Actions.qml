@@ -35,9 +35,11 @@ QtObject {
     }
 
     function markCurrentEntry(status) {
-        let pass_times = 0
-        if (status === EntryModel.Firmly) {
+        let pass_times
+        if (status === States.currentEntry.status) {
             pass_times = States.currentEntry.pass_times + 1
+        } else {
+            pass_times = 1
         }
 
         let last_reviewed = Date.now()

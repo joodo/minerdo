@@ -116,6 +116,7 @@ qreal EntryModel::weight(const QSqlRecord &entry)
     auto lastReviewedTime = QDateTime::fromMSecsSinceEpoch(entry.value("last_reviewed").toLongLong());
     auto daysToNow = lastReviewedTime.daysTo(QDateTime::currentDateTime());
     auto secsToNow = lastReviewedTime.secsTo(QDateTime::currentDateTime());
+    auto passTimes = entry.value("pass_times").toInt();
 
     switch (entry.value("status").toInt())
     {
@@ -124,13 +125,18 @@ qreal EntryModel::weight(const QSqlRecord &entry)
     case EntryModel::Forgot:
         return secsToNow > 2*60? 10 : 0;
     case EntryModel::Temporarily:
-        return daysToNow > 1? 10 : 0;
+        if (passTimes == 1) {
+            return secsToNow > 60 * 60? 10 : 0;
+        } else {
+            auto t = passTimes < 8? passTimes : 8;
+            auto w = daysToNow / (t-1) * 10;
+            return w < 10? w : 10;
+        }
     case EntryModel::Firmly:
     {
-        auto w = daysToNow < 30? daysToNow : 30;
-        auto t = entry.value("pass_times").toInt();
-        t = t < 3? t : 3;
-        return w / t;
+        auto t = passTimes < 3? passTimes : 3;
+        auto w = daysToNow / t;
+        return w < 10? w : 10;
     }
     default:
         qWarning() << "Entry status undefined: " << entry.value("status").toInt();
