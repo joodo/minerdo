@@ -63,6 +63,6 @@ Page {
         highlighted: true
         Material.background: Material.Green
         width: UI.dp(80); height: width
-        font.pointSize: 30 // FIXME: replace it with icon
+        font.pointSize: 30 // TODO: replace it with icon
     }
 }
