@@ -62,6 +62,7 @@ int EntryModel::randomIndex()
         weights.append(w);
     }
     if (totalWeight < 0.01) {
+        emit allReviewed();
         return QRandomGenerator::global()->bounded(rowCount());
     }
 
@@ -70,6 +71,7 @@ int EntryModel::randomIndex()
     for (int i = 0; i < weights.length(); i++) {
         rand -= weights.at(i);
         if (rand < 0) {
+            qInfo() << "entry id:" << i << ", weight:" << weights.at(i);
             return i;
         }
     }
@@ -117,6 +119,7 @@ qreal EntryModel::weight(const QSqlRecord &entry)
     auto daysToNow = lastReviewedTime.daysTo(QDateTime::currentDateTime());
     auto secsToNow = lastReviewedTime.secsTo(QDateTime::currentDateTime());
     auto passTimes = entry.value("pass_times").toInt();
+    passTimes = passTimes < 1? 1 : passTimes;
 
     switch (entry.value("status").toInt())
     {

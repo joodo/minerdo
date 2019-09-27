@@ -25,6 +25,9 @@ public:
     };
     Q_ENUM(Status)
 
+signals:
+    void allReviewed();
+
 public slots:
     void append(const QJsonObject& entry);
     void update(const QJsonObject& entry);

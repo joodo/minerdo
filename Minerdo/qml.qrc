@@ -12,5 +12,6 @@
         <file>EntryEditPage.qml</file>
         <file>Actions.qml</file>
         <file>EntryTextArea.qml</file>
+        <file>Snackbar.qml</file>
     </qresource>
 </RCC>

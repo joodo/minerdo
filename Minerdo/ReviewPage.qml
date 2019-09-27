@@ -10,6 +10,18 @@ Page {
     signal backClicked()
     signal editTriggered()
 
+    property bool allReviewedHinted: false
+    Connections {
+        target: States.entryModel
+        onAllReviewed: {
+            if (allReviewedHinted) return
+            allReviewedHinted = true
+            UI.showMessage({
+                               "text": "All entries has been reviewed"
+                           })
+        }
+    }
+
     function hideAnswerMask() {
         answerMask.visible = false
     }

@@ -69,4 +69,13 @@ ApplicationWindow {
             }
         }
     }
+
+    Snackbar {
+        id: snackbar
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
+    Connections {
+        target: UI
+        onShowMessage: snackbar.show(message)
+    }
 }

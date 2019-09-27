@@ -5,6 +5,8 @@ import QtQuick.Window 2.13
 import QtQuick.Controls.Material 2.13
 
 QtObject {
+    signal showMessage(var message)
+
     function dp(pointSize) {
         return pointSize * Screen.pixelDensity * 25.4 / 160
     }

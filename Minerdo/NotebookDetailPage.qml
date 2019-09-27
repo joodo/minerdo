@@ -38,8 +38,8 @@ Page {
             width: UI.dp(160)
             highlighted: true
             onClicked: {
-                Actions.pickRandomEntry()
                 notebookDetailPage.reviewClicked()
+                Actions.pickRandomEntry()
             }
         }
         Button {
