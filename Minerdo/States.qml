@@ -3,6 +3,8 @@ pragma Singleton
 import QtQuick 2.13
 import Minerdo 1.0
 
+import 'axios.js' as Axios
+
 QtObject {
     property var notebookModel: NotebookModel {}
     property var currentNotebookModel: ItemModel {

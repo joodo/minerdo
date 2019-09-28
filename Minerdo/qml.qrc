@@ -15,5 +15,6 @@
         <file>Snackbar.qml</file>
         <file>CollapsableToolButton.qml</file>
         <file>ColorRadioButton.qml</file>
+        <file>axios.js</file>
     </qresource>
 </RCC>

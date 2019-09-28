@@ -11,12 +11,6 @@ ToolButton {
     property string expandText
     property bool initedState: false
 
-    Behavior on implicitWidth {
-        NumberAnimation {
-            duration: UI.controlsDuration
-        }
-    }
-
     onStateChanged: {
         // avoid component blink on loading finished
         if (!initedState) {
@@ -35,29 +29,24 @@ ToolButton {
         }
     }
 
-    ParallelAnimation {
+    SequentialAnimation {
         id: animation
-        //alwaysRunToEnd: true
-
-        SequentialAnimation {
-            PropertyAnimation {
-                target: toolButton.contentItem
-                property: "opacity"
-                to: 0
-                duration: UI.fadeOutDuration
-            }
-            PropertyAction {
-                id: textChangePropertyAction
-                target: toolButton
-                property: "text"
-            }
-            PropertyAnimation {
-                target: toolButton.contentItem
-                property: "opacity"
-                to: 1
-                duration: UI.fadeInDuration
-            }
+        PropertyAnimation {
+            target: toolButton.contentItem
+            property: "opacity"
+            to: 0
+            duration: UI.fadeOutDuration
         }
-
+        PropertyAction {
+            id: textChangePropertyAction
+            target: toolButton
+            property: "text"
+        }
+        PropertyAnimation {
+            target: toolButton.contentItem
+            property: "opacity"
+            to: 1
+            duration: UI.fadeInDuration
+        }
     }
 }

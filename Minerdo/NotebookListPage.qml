@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
 
 import Minerdo 1.0
+import "axios.js" as Axios
 
 Page {
     id: notebookListPage
@@ -17,6 +18,37 @@ Page {
         readonly property real maxHeight: UI.dp(240)
 
         height: maxHeight
+
+        Rectangle {
+            id: backgroundRect
+            anchors.fill: parent
+            color: "black"
+            opacity: 0
+            Image {
+                Component.onCompleted: {
+                    Axios.instance.get("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&ensearch=1")
+                    .then((response) => {
+                              let url = response.data.images[0].url
+                              url = "http://www.bing.com" + url
+                              source = url
+                          })
+                }
+                onStatusChanged: if (status === Image.Ready) backgroundShowAnimator.start()
+                anchors.fill: parent
+                fillMode: Image.PreserveAspectCrop
+                opacity: .6
+            }
+            OpacityAnimator {
+                id: backgroundShowAnimator
+                duration: UI.cardExpandDuration
+                target: backgroundRect
+                to: ((toolBar.height - toolBar.implicitHeight) /
+                     (toolBar.maxHeight - toolBar.implicitHeight))
+                onFinished: backgroundRect.opacity = Qt.binding(() => (
+                                                                    (toolBar.height - toolBar.implicitHeight) /
+                                                                    (toolBar.maxHeight - toolBar.implicitHeight)))
+            }
+        }
 
         Label {
             fontSizeMode: Text.Fit
@@ -96,16 +128,7 @@ Page {
         Flow {
             id: flow
             spacing: UI.dp(16)
-            width: {
-                if (contentChildren.length === 0) {
-                    0
-                } else {
-                    var itemWidth = UI.cardWidth + spacing
-                    Math.floor((parent.width+spacing) / itemWidth) * itemWidth - spacing + 1
-                }
-            }
-
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors { left: parent.left; right: parent.right }
 //            move: transition
 //            add: transition
 //            Transition {
