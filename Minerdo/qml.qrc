@@ -5,10 +5,10 @@
         <file>UI.qml</file>
         <file>NotebookListPage.qml</file>
         <file>NotebookCard.qml</file>
-        <file>NotebookDetailPage.qml</file>
+        <file>NotebookEditPage.qml</file>
         <file>States.qml</file>
         <file>ReviewPage.qml</file>
-        <file>NotebookEditPage.qml</file>
+        <file>EntryListPage.qml</file>
         <file>EntryEditPage.qml</file>
         <file>Actions.qml</file>
         <file>EntryTextArea.qml</file>

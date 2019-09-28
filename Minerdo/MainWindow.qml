@@ -25,17 +25,23 @@ ApplicationWindow {
             id: noteBookListComponent
             NotebookListPage {
                 onReviewTriggered: stackView.push(reviewPageComponent)
-                onEditTriggered: stackView.push(notebookEditPageComponent)
-                onNewTriggered: stackView.push(noteBookDetailPageComponent)
+                onEditTriggered: stackView.push(entryListPageComponent)
+                onNewTriggered: stackView.push(notebookCreatePageComponent)
             }
         }
 
         Component {
-            id: noteBookDetailPageComponent
-            NotebookDetailPage {
+            id: notebookEditPageComponent
+            NotebookEditPage {
+                state: "edit"
                 onBackClicked: stackView.pop()
-                onReviewClicked: stackView.push(reviewPageComponent)
-                onEditTriggered: stackView.push(notebookEditPageComponent)
+            }
+        }
+        Component {
+            id: notebookCreatePageComponent
+            NotebookEditPage {
+                state: "create"
+                onBackClicked: stackView.pop()
             }
         }
 
@@ -48,12 +54,12 @@ ApplicationWindow {
         }
 
         Component {
-            id: notebookEditPageComponent
-            NotebookEditPage {
+            id: entryListPageComponent
+            EntryListPage {
                 onBackTriggered: stackView.pop()
-                onNewTriggered: stackView.push(entryNewPageComponent)
+                onNewTriggered: stackView.push(entryCreatePageComponent)
                 onEditTriggered: stackView.push(entryEditPageComponent)
-                onEditNotebookTriggered: stackView.push(noteBookDetailPageComponent)
+                onEditNotebookTriggered: stackView.push(notebookEditPageComponent)
             }
         }
 
@@ -65,9 +71,9 @@ ApplicationWindow {
             }
         }
         Component {
-            id: entryNewPageComponent
+            id: entryCreatePageComponent
             EntryEditPage {
-                state: "new"
+                state: "create"
                 onBackTriggered: stackView.pop()
             }
         }

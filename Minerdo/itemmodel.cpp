@@ -75,6 +75,7 @@ void ItemModel::onModelRowsRemoved(const QModelIndex &parent, int first, int las
 {
     Q_UNUSED(parent)
     if (m_index < first || m_index > last) return;
+    m_index = -1;
     emit itemRemoved();
 }
 

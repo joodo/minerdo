@@ -6,68 +6,155 @@ import QtQuick.Layouts 1.13
 import Minerdo 1.0
 
 Page {
-    id: notebookEditPage
+    id: notebookDetailPage
 
-    signal backTriggered()
-    signal editTriggered()
-    signal newTriggered()
-    signal editNotebookTriggered()
-    
-    title: States.currentNotebook.name
-    
+    signal backClicked()
+
     header: ToolBar {
         RowLayout {
             anchors.fill: parent
             ToolButton {
                 text: "<"
-                onClicked: notebookEditPage.backTriggered()
+                onClicked: notebookDetailPage.backClicked()
             }
             Label {
                 Layout.fillWidth: true
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
-                text: notebookEditPage.title
+                text: notebookDetailPage.title
+            }
+        }
+    }
+
+    ScrollView {
+        anchors.fill: parent
+        contentWidth: contentItem.width
+        padding: UI.dp(20)
+        focus: true
+
+        ColumnLayout {
+            anchors { left: parent.left; right: parent.right }
+            EntryTextArea { // TODO: rename component name
+                id: nameTextArea
+                Layout.fillWidth: true
+                placeholderText: qsTr("Notebook Name")
+                focus: true
+            }
+            ButtonGroup {
+                id: buttonGroup
+                buttons: flow.children
+            }
+            Flow {
+                id: flow
+                Layout.fillWidth: true
+                ColorRadioButton {
+                    color: Material.Blue
+                }
+                ColorRadioButton {
+                    color: Material.Green
+                }
+                ColorRadioButton {
+                    color: Material.Teal
+                }
+                ColorRadioButton {
+                    color: Material.Amber
+                }
+                ColorRadioButton {
+                    color: Material.Brown
+                }
+                ColorRadioButton {
+                    color: Material.BlueGrey
+                }
+                ColorRadioButton {
+                    color: Material.Pink
+                }
+                ColorRadioButton {
+                    color: Material.Indigo
+                }
+            }
+        }
+    }
+
+    footer: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                id: button1
+                Layout.fillWidth: true
+                enabled: nameTextArea.text
             }
             ToolButton {
-                text: "✎"
-                onClicked: notebookEditPage.editNotebookTriggered()
+                id: buttonRemove
+                text: qsTr("Remove")
+                Layout.fillWidth: true
+                onClicked: {
+                    Actions.removeCurrentNotebook()
+                    notebookDetailPage.backClicked()
+                }
             }
         }
     }
 
-    ListView {
-        anchors.fill: parent
-        model: States.entryModel
-        delegate: ItemDelegate {
-            onClicked: {
-                Actions.setCurrentEntry(index)
-                notebookEditPage.editTriggered()
+    states: [
+        State {
+            name: "create"
+            PropertyChanges {
+                target: button1
+                text: qsTr("Create") // TODO: create? new?
+                onClicked: {
+                    const data = {
+                        "name": nameTextArea.text,
+                        "color": buttonGroup.checkedButton.color,
+                    }
+                    Actions.createNotebook(data)
+                    notebookDetailPage.backClicked()
+                }
             }
-
-            anchors {
-                left: parent.left; right: parent.right
+            PropertyChanges {
+                target: buttonRemove
+                visible: false
             }
-
-            text: question? "[" + index + "] " + question.replace(/\n/g, ' ') : ""
+            PropertyChanges {
+                target: buttonGroup
+                checkedButton: buttons[Math.floor(Math.random() * buttons.length)]
+            }
+            PropertyChanges {
+                target: notebookDetailPage
+                title: qsTr("New Notebook")
+            }
+        },
+        State {
+            name: "edit"
+            PropertyChanges {
+                target: button1
+                text: qsTr("Update")
+                onClicked: {
+                    const data = {
+                        "name": nameTextArea.text,
+                        "color": buttonGroup.checkedButton.color,
+                    }
+                    Actions.updateCurrentNotebook(data)
+                    notebookDetailPage.backClicked()
+                }
+            }
+            PropertyChanges {
+                target: buttonGroup
+                checkedButton: {
+                    for (let i = 0; i < buttons.length; i++) {
+                        if (buttons[i].color === States.currentNotebook.color) {
+                            return buttons[i]
+                        }
+                    }
+                }
+            }
+            PropertyChanges {
+                target: notebookDetailPage
+                title: qsTr("Edit Notebook")
+            }
+            PropertyChanges {
+                target: nameTextArea
+                text: States.currentNotebook.name
+            }
         }
-
-        ScrollBar.vertical: ScrollBar { }
-    }
-
-    RoundButton {
-        text: "+"
-
-        onClicked: notebookEditPage.newTriggered()
-
-        Material.elevation: 10
-        z: Material.elevation
-        anchors {
-            right: parent.right; rightMargin: UI.dp(30)
-            bottom: parent.bottom; bottomMargin: UI.dp(30)
-        }
-        highlighted: true
-        Material.background: Material.Green
-        width: UI.dp(80); height: width
-        font.pointSize: 30 // TODO: replace it with icon
-    }
+    ]
 }

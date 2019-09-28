@@ -112,10 +112,11 @@ Page {
                     text: name
                     materialColor: color
                     onClicked: {
-                        Actions.openNotebook()
+                        Actions.setCurrentNotebook(index)
                         notebookListPage.reviewTriggered()
                     }
                     onEditClicked: {
+                        Actions.setCurrentNotebook(index)
                         notebookListPage.editTriggered()
                     }
                 }

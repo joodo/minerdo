@@ -5,10 +5,6 @@ import QtQuick 2.13
 import Minerdo 1.0
 
 QtObject {
-    function openNotebook() {
-        //EntryModel.open()
-    }
-
     function createEntry(entry) {
         entry["status"] = EntryModel.New
         entry["pass_times"] = 0
@@ -25,13 +21,27 @@ QtObject {
         States.currentEntryModel.index = index
     }
 
+    function setCurrentNotebook(index) {
+        States.currentNotebookModel.index = index
+    }
+
     function updateCurrentEntry(newEntry) {
         let e = Object.assign(States.currentEntry, newEntry)
         States.entryModel.update(e)
     }
 
+    function updateCurrentNotebook(data) {
+        let e = Object.assign(States.currentNotebook, data)
+        States.notebookModel.update(e)
+    }
+
     function removeCurrentEntry() {
         States.entryModel.remove(States.currentEntry.index)
+    }
+
+    function removeCurrentNotebook() {
+        print(States.currentNotebook.index)
+        States.notebookModel.remove(States.currentNotebook.index)
     }
 
     function pickRandomEntry() {

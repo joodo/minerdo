@@ -74,7 +74,7 @@ Page {
 
     states: [
         State {
-            name: "new"
+            name: "create"
             PropertyChanges {
                 target: button1
                 implicitWidth: 1
