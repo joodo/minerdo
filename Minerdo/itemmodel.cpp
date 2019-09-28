@@ -1,15 +1,15 @@
 #include "itemmodel.h"
 
+#include <qDebug>
+
 bool ItemModel::exists()
 {
     return m_index >= 0 && m_index < m_model->rowCount();
 }
 
-ItemModel::ItemModel(QObject *parent) : QObject(parent), m_model(nullptr), m_index(0)
+ItemModel::ItemModel(QObject *parent) : QObject(parent), m_model(nullptr), m_index(-1)
 {
     m_item = new QQmlPropertyMap(this);
-    connect(this, &ItemModel::modelChanged, &ItemModel::updateProperties);
-    connect(this, &ItemModel::indexChanged, &ItemModel::updateProperties);
 }
 
 ItemModel::~ItemModel()
@@ -48,6 +48,8 @@ void ItemModel::setModel(QAbstractItemModel *model)
     connect(m_model, &QAbstractItemModel::rowsRemoved,
             this, &ItemModel::onModelRowsRemoved);
 
+    updateProperties();
+
     emit modelChanged(m_model);
 }
 
@@ -57,6 +59,8 @@ void ItemModel::setIndex(int index)
         return;
 
     m_index = index;
+    updateProperties();
+
     emit indexChanged(m_index);
 }
 

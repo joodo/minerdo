@@ -5,29 +5,12 @@ import QtQuick 2.13
 import Minerdo 1.0
 
 QtObject {
-    function createEntry(entry) {
-        entry["status"] = EntryModel.New
-        entry["pass_times"] = 0
-        entry["last_reviewed"] = Date.now()
-        entry["notebook"] = 1
-        States.entryModel.append(entry)
-    }
-
     function createNotebook(notebook) {
         States.notebookModel.append(notebook)
     }
 
-    function setCurrentEntry(index) {
-        States.currentEntryModel.index = index
-    }
-
     function setCurrentNotebook(index) {
         States.currentNotebookModel.index = index
-    }
-
-    function updateCurrentEntry(newEntry) {
-        let e = Object.assign(States.currentEntry, newEntry)
-        States.entryModel.update(e)
     }
 
     function updateCurrentNotebook(data) {
@@ -35,18 +18,38 @@ QtObject {
         States.notebookModel.update(e)
     }
 
-    function removeCurrentEntry() {
-        States.entryModel.remove(States.currentEntry.index)
-    }
-
+    // FIXME: dirty entries after remove notebook
     function removeCurrentNotebook() {
         print(States.currentNotebook.index)
         States.notebookModel.remove(States.currentNotebook.index)
     }
 
+    function createEntry(entry) {
+        entry["status"] = EntryModel.New
+        entry["pass_times"] = 0
+        entry["last_reviewed"] = Date.now()
+        entry["notebook"] = States.currentNotebook.id
+        States.entryModel.append(entry)
+    }
+
+    function setCurrentEntry(index) {
+        States.currentEntryModel.index = index
+    }
+
+    function updateCurrentEntry(newEntry) {
+        let e = Object.assign(States.currentEntry, newEntry)
+        States.entryModel.update(e)
+    }
+
+    function removeCurrentEntry() {
+        States.entryModel.remove(States.currentEntry.index)
+    }
+
     function pickRandomEntry() {
         let randomIndex = States.entryModel.randomIndex()
+        if (randomIndex < 0) return false
         setCurrentEntry(randomIndex)
+        return true
     }
 
     function markCurrentEntry(status) {

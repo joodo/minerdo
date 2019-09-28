@@ -35,6 +35,7 @@ ApplicationWindow {
             NotebookEditPage {
                 state: "edit"
                 onBackClicked: stackView.pop()
+                onRemoved: { stackView.pop(); stackView.pop(); }
             }
         }
         Component {
@@ -42,6 +43,11 @@ ApplicationWindow {
             NotebookEditPage {
                 state: "create"
                 onBackClicked: stackView.pop()
+                onCreated: {
+                    stackView.pop()
+                    Actions.setCurrentNotebook(States.notebookModel.rowCount() - 1)
+                    stackView.push(entryListPageComponent)
+                }
             }
         }
 

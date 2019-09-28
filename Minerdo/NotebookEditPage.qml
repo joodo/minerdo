@@ -9,6 +9,10 @@ Page {
     id: notebookDetailPage
 
     signal backClicked()
+    signal removed()
+    signal created()
+
+    property bool valid: nameTextArea.text
 
     header: ToolBar {
         RowLayout {
@@ -81,7 +85,7 @@ Page {
             ToolButton {
                 id: button1
                 Layout.fillWidth: true
-                enabled: nameTextArea.text
+                enabled: notebookDetailPage.valid
             }
             ToolButton {
                 id: buttonRemove
@@ -89,7 +93,7 @@ Page {
                 Layout.fillWidth: true
                 onClicked: {
                     Actions.removeCurrentNotebook()
-                    notebookDetailPage.backClicked()
+                    notebookDetailPage.removed()
                 }
             }
         }
@@ -102,12 +106,13 @@ Page {
                 target: button1
                 text: qsTr("Create") // TODO: create? new?
                 onClicked: {
+                    if (!notebookDetailPage.valid) return
                     const data = {
                         "name": nameTextArea.text,
                         "color": buttonGroup.checkedButton.color,
                     }
                     Actions.createNotebook(data)
-                    notebookDetailPage.backClicked()
+                    notebookDetailPage.created()
                 }
             }
             PropertyChanges {
@@ -129,6 +134,7 @@ Page {
                 target: button1
                 text: qsTr("Update")
                 onClicked: {
+                    if (!notebookDetailPage.valid) return
                     const data = {
                         "name": nameTextArea.text,
                         "color": buttonGroup.checkedButton.color,
@@ -157,4 +163,11 @@ Page {
             }
         }
     ]
+
+    Keys.onPressed: {
+        if (event.key === Qt.Key_Return && event.modifiers === Qt.ControlModifier) {
+            button1.clicked()
+            event.accepted = true
+        }
+    }
 }

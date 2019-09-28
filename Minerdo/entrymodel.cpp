@@ -10,6 +10,8 @@ EntryModel::EntryModel(QObject *parent) : SqlQmlModel(parent)
 
 int EntryModel::randomIndex()
 {
+    if (rowCount() == 0) return -1;
+
     qreal totalWeight = 0;
     QVector <qreal> weights;
 
@@ -102,4 +104,26 @@ qreal EntryModel::weight(const QSqlRecord &entry)
         qWarning() << "Entry status undefined: " << entry.value("status").toInt();
         return 0;
     }
+}
+
+void EntryModel::setNotebookId(int notebookId)
+{
+    if (m_notebookId == notebookId)
+        return;
+
+    m_notebookId = notebookId;
+    if (notebookId > 0) {
+        setFilter("notebook=" + QString::number(notebookId));
+    } else {
+        setFilter("");
+    }
+    select();
+
+    emit dataChanged(index(0,0), index(rowCount() - 1, columnCount() - 1));
+    emit notebookIdChanged(m_notebookId);
+}
+
+int EntryModel::notebookId() const
+{
+    return m_notebookId;
 }

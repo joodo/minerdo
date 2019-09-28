@@ -10,6 +10,7 @@
 class SqlQmlModel : public QSqlTableModel
 {
     Q_OBJECT
+
 public:
     SqlQmlModel(QObject* parent) : QSqlTableModel(parent) { }
 

@@ -29,7 +29,7 @@ Page {
                 const h = date.getHours()
                 if (h < 12) {
                     qsTr("Good Morning.")
-                } else if (h < 7) {
+                } else if (h < 19) {
                     qsTr("Good Afternoon.")
                 } else {
                     qsTr("Good Evening.")
@@ -45,7 +45,16 @@ Page {
                 expandText: qsTr("Review All")
                 collapsedText: "✓"
                 state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
-                onClicked: notebookListPage.reviewTriggered()
+                onClicked: {
+                    Actions.setCurrentNotebook(-1)
+                    if (Actions.pickRandomEntry()) {
+                        notebookListPage.reviewTriggered()
+                    } else {
+                        UI.showMessage({
+                                           "text": qsTr("There's no entry. Please create one.")
+                                       })
+                    }
+                }
             }
             CollapsableToolButton {
                 expandText: qsTr("New Notebook")
@@ -113,7 +122,13 @@ Page {
                     materialColor: color
                     onClicked: {
                         Actions.setCurrentNotebook(index)
-                        notebookListPage.reviewTriggered()
+                        if (Actions.pickRandomEntry()) {
+                            notebookListPage.reviewTriggered()
+                        } else {
+                            UI.showMessage({
+                                               "text": qsTr("There's no entry in this notebook. Click \"EDIT\" to create one.")
+                                           })
+                        }
                     }
                     onEditClicked: {
                         Actions.setCurrentNotebook(index)

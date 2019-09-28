@@ -4,13 +4,15 @@ import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
 
 import Minerdo 1.0
-
+// FIXME: When enter this page from ReviewPage, the last entry in a notebook removed, fix the behavior to jump out and hint
 Page {
     id: entryEditPage
 
     title: States.currentNotebook.name
 
     signal backTriggered()
+
+    property bool valid: questionTextArea.text && answerTextArea.text
 
     header: ToolBar {
         RowLayout {
@@ -60,10 +62,10 @@ Page {
     footer: ToolBar {
         RowLayout {
             anchors.fill: parent
-            enabled: questionTextArea.text && answerTextArea.text
             ToolButton {
                 id: button1
                 Layout.fillWidth: true
+                enabled: entryEditPage.valid
             }
             ToolButton {
                 id: button2
@@ -80,6 +82,7 @@ Page {
                 implicitWidth: 1
                 text: qsTr("Add and New")
                 onClicked: {
+                    if (!entryEditPage.valid) return
                     Actions.createEntry({
                                          "question": questionTextArea.text,
                                          "answer": answerTextArea.text,
@@ -95,7 +98,9 @@ Page {
                 target: button2
                 implicitWidth: 1
                 text: qsTr("Add")
+                enabled: entryEditPage.valid
                 onClicked: {
+                    if (!entryEditPage.valid) return
                     Actions.createEntry({
                                          "question": questionTextArea.text,
                                          "answer": answerTextArea.text,
@@ -111,6 +116,7 @@ Page {
                 target: button1
                 text: qsTr("Update")
                 onClicked: {
+                    if (!entryEditPage.valid) return
                     Actions.updateCurrentEntry({
                                                    "question": questionTextArea.text,
                                                    "answer": answerTextArea.text,
@@ -122,6 +128,7 @@ Page {
             PropertyChanges {
                 target: button2
                 text: qsTr("Remove")
+                enabled: true
                 onClicked: {
                     Actions.removeCurrentEntry()
                     entryEditPage.backTriggered()
