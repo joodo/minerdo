@@ -14,7 +14,7 @@ ItemModel::ItemModel(QObject *parent) : QObject(parent), m_model(nullptr), m_ind
 
 ItemModel::~ItemModel()
 {
-    free(m_item);
+    m_item->deleteLater();
 }
 
 QAbstractItemModel *ItemModel::model() const

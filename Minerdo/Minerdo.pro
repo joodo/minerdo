@@ -16,7 +16,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         entrymodel.cpp \
         itemmodel.cpp \
-        main.cpp
+        main.cpp \
+        notebookmodel.cpp \
+        sqlqmlmodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,7 +35,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     entrymodel.h \
-    itemmodel.h
+    itemmodel.h \
+    notebookmodel.h \
+    sqlqmlmodel.h
 
 macx {
     ICON = logo.icns

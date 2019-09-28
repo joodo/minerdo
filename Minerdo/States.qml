@@ -9,6 +9,7 @@ QtObject {
         "name": "Default Notebook",
     }
     property var entryModel: EntryModel {}
+    property var notebookModel: NotebookModel {}
     property var currentEntryModel: ItemModel {
         model: entryModel
         onItemRemoved: {

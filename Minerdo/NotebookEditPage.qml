@@ -11,6 +11,7 @@ Page {
     signal backTriggered()
     signal editTriggered()
     signal newTriggered()
+    signal editNotebookTriggered()
     
     title: States.currentNotebook.name
     
@@ -26,6 +27,10 @@ Page {
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: notebookEditPage.title
+            }
+            ToolButton {
+                text: "✎"
+                onClicked: notebookEditPage.editNotebookTriggered()
             }
         }
     }

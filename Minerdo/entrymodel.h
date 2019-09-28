@@ -10,7 +10,9 @@
 #include <QRandomGenerator>
 #include <QDateTime>
 
-class EntryModel : public QSqlTableModel
+#include "sqlqmlmodel.h"
+
+class EntryModel : public SqlQmlModel
 {
     Q_OBJECT
 public:
@@ -29,21 +31,11 @@ signals:
     void allReviewed();
 
 public slots:
-    void append(const QJsonObject& entry);
-    void update(const QJsonObject& entry);
-    void remove(int index);
-
-    QJsonObject get(int index);
     int randomIndex();
     QJsonObject statusCount();
 
 private:
     qreal weight(const QSqlRecord& entry);
-
-    // QAbstractItemModel interface
-public:
-    QHash<int, QByteArray> roleNames() const override;
-    QVariant data(const QModelIndex &index, int role) const override;
 };
 
 #endif // ENTRYMODEL_H

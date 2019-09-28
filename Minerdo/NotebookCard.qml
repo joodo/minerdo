@@ -10,6 +10,7 @@ Pane {
     id: noteBookCard
 
     property string text
+    property int color
     signal clicked()
     signal editClicked()
 
@@ -20,7 +21,7 @@ Pane {
     Behavior on Material.elevation { NumberAnimation { duration: UI.controlsDuration }}
 
     background: Rectangle {
-        color: noteBookCard.Material.backgroundColor
+        color: Material.color(noteBookCard.color, UI.backgroundShade)
         radius: UI.dp(8)
         border.color: Material.color(Material.Grey)
         border.width: 1

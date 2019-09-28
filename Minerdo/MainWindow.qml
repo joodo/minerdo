@@ -53,6 +53,7 @@ ApplicationWindow {
                 onBackTriggered: stackView.pop()
                 onNewTriggered: stackView.push(entryNewPageComponent)
                 onEditTriggered: stackView.push(entryEditPageComponent)
+                onEditNotebookTriggered: stackView.push(noteBookDetailPageComponent)
             }
         }
 

@@ -106,10 +106,11 @@ Page {
 //            }
 
             Repeater{
-                model: 20
+                model: States.notebookModel
                 delegate: NotebookCard {
                     id: notebookCard
-                    text: "Item " + index
+                    text: name
+                    color: color
                     onClicked: {
                         Actions.openNotebook()
                         notebookListPage.reviewTriggered()

@@ -7,6 +7,7 @@
 
 #include "entrymodel.h"
 #include "itemmodel.h"
+#include "notebookmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     qmlRegisterType<EntryModel>("Minerdo", 1, 0, "EntryModel");
+    qmlRegisterType<NotebookModel>("Minerdo", 1, 0, "NotebookModel");
     qmlRegisterType<ItemModel>("Minerdo", 1, 0, "ItemModel");
     qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "Minerdo", 1, 0, "UI");
     qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "Minerdo", 1, 0, "States");
