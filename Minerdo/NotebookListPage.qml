@@ -105,12 +105,12 @@ Page {
 //                YAnimator { duration: UI.mediumExpandDuration }
 //            }
 
-            Repeater{
+            Repeater {
                 model: States.notebookModel
                 delegate: NotebookCard {
                     id: notebookCard
                     text: name
-                    color: color
+                    materialColor: color
                     onClicked: {
                         Actions.openNotebook()
                         notebookListPage.reviewTriggered()

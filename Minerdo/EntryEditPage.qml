@@ -80,7 +80,7 @@ Page {
                 implicitWidth: 1
                 text: qsTr("Add and New")
                 onClicked: {
-                    Actions.newEntry({
+                    Actions.createEntry({
                                          "question": questionTextArea.text,
                                          "answer": answerTextArea.text,
                                          "note": noteTextArea.text,
@@ -96,7 +96,7 @@ Page {
                 implicitWidth: 1
                 text: qsTr("Add")
                 onClicked: {
-                    Actions.newEntry({
+                    Actions.createEntry({
                                          "question": questionTextArea.text,
                                          "answer": answerTextArea.text,
                                          "note": noteTextArea.text,

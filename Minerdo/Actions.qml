@@ -9,11 +9,16 @@ QtObject {
         //EntryModel.open()
     }
 
-    function newEntry(entry) {
+    function createEntry(entry) {
         entry["status"] = EntryModel.New
         entry["pass_times"] = 0
         entry["last_reviewed"] = Date.now()
+        entry["notebook"] = 1
         States.entryModel.append(entry)
+    }
+
+    function createNotebook(notebook) {
+        States.notebookModel.append(notebook)
     }
 
     function setCurrentEntry(index) {

@@ -8,11 +8,19 @@ import Minerdo 1.0
 Page {
     id: notebookDetailPage
 
-    signal backClicked
-    signal reviewClicked
-    signal editTriggered
+    signal backClicked()
+    signal reviewClicked()
+    signal editTriggered()
 
-    title: States.currentNotebook.name
+    function createNotebook() {
+        const data = {
+            "name": nameTextArea.text,
+            "color": buttonGroup.checkedButton.color,
+        }
+        Actions.createNotebook(data)
+    }
+
+    title: qsTr("New Notebook")
 
     header: ToolBar {
         RowLayout {
@@ -34,14 +42,27 @@ Page {
         anchors.fill: parent
         contentWidth: contentItem.width
         padding: UI.dp(20)
+        focus: true
 
         ColumnLayout {
             anchors { left: parent.left; right: parent.right }
-            EntryTextArea {
+            EntryTextArea { // TODO: rename component name
+                id: nameTextArea
                 Layout.fillWidth: true
                 placeholderText: qsTr("Notebook Name")
+                focus: true
+            }
+            ButtonGroup {
+                id: buttonGroup
+                buttons: flow.children
+                Component.onCompleted: {
+                    const notebookCount = States.notebookModel.rowCount()
+                    const colorCount = buttons.length
+                    buttons[notebookCount%colorCount].checked = true
+                }
             }
             Flow {
+                id: flow
                 Layout.fillWidth: true
                 ColorRadioButton {
                     color: Material.Blue
@@ -77,10 +98,17 @@ Page {
             ToolButton {
                 id: button1
                 Layout.fillWidth: true
+                text: qsTr("Create")
+                enabled: nameTextArea.text
+                onClicked: {
+                    notebookDetailPage.createNotebook()
+                    notebookDetailPage.backClicked()
+                }
             }
             ToolButton {
                 id: button2
                 Layout.fillWidth: true
+                visible: false
             }
         }
     }
