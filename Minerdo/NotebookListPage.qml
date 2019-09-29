@@ -22,6 +22,7 @@ Page {
 
         Rectangle {
             id: backgroundRect
+            // TODO: make a background photo cache to avoid blinking
             anchors.fill: parent
             color: "black"
             opacity: 0

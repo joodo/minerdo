@@ -24,9 +24,12 @@ void SearchEngine::updateIndex(QAbstractItemModel *model, const QStringList &fie
     QVector<int> roles;
     auto roleNames = model->roleNames();
 
-    for (auto role : roleNames.keys()) {
-        if (fields.contains(roleNames.value(role))) {
+    for (auto field : fields) {
+        auto role = roleNames.key(field.toUtf8());
+        if (role > 0) {
             roles.append(role);
+        } else {
+            qWarning() << "Can't find field name: " << field;
         }
     }
 
