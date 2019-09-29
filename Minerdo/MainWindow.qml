@@ -27,6 +27,7 @@ ApplicationWindow {
                 onReviewTriggered: stackView.push(reviewPageComponent)
                 onEditTriggered: stackView.push(entryListPageComponent)
                 onNewTriggered: stackView.push(notebookCreatePageComponent)
+                onEditEntryTriggered: stackView.push(entryEditPageComponent)
             }
         }
 

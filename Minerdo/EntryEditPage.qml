@@ -8,8 +8,6 @@ import Minerdo 1.0
 Page {
     id: entryEditPage
 
-    title: States.currentNotebook.name
-
     signal backTriggered()
 
     property bool valid: questionTextArea.text && answerTextArea.text
@@ -109,6 +107,10 @@ Page {
                     entryEditPage.backTriggered()
                 }
             }
+            PropertyChanges {
+                target: entryEditPage
+                title: qsTr("Create Entry")
+            }
         },
         State {
             name: "edit"
@@ -145,6 +147,10 @@ Page {
             PropertyChanges {
                 target: noteTextArea
                 text: States.currentEntry.note
+            }
+            PropertyChanges {
+                target: entryEditPage
+                title: qsTr("Edit Entry")
             }
         }
     ]

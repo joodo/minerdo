@@ -12,6 +12,7 @@ Page {
     signal reviewTriggered()
     signal editTriggered()
     signal newTriggered()
+    signal editEntryTriggered()
 
     header: ToolBar {
         id: toolBar
@@ -94,6 +95,10 @@ Page {
                 state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
                 onClicked: {
                     searchPane.state = "show"
+                    searchPane.focus = true
+                    Actions.setCurrentNotebook(-1)
+                    SearchEngine.updateIndex(States.entryModel, ["question", "answer", "note"])
+                    SearchEngine.clearResult()
                 }
             }
         }
@@ -110,9 +115,6 @@ Page {
                 property: "height"
                 to: toolBar.implicitHeight
                 duration: UI.controlsDuration
-                onFinished: {
-                    searchPane.focus = true
-                }
             }
         }
     }
@@ -130,7 +132,8 @@ Page {
                     toolBar.height = toolBar.implicitHeight
                 }
             } else {
-                if (scrollView.ScrollBar.vertical.position > 0) return
+                if (scrollView.ScrollBar.vertical.position > 0 ||
+                        searchPane.state === "show") return
                 toolBar.height += wheel.angleDelta.y
                 if (toolBar.height > toolBar.maxHeight) {
                     toolBar.height = toolBar.maxHeight
@@ -154,8 +157,8 @@ Page {
                 model: States.notebookModel
                 delegate: NotebookCard {
                     id: notebookCard
-                    text: name
-                    materialColor: color
+                    text: name || ""
+                    materialColor: color || 0
                     onClicked: {
                         Actions.setCurrentNotebook(index)
                         if (Actions.pickRandomEntry()) {
@@ -180,4 +183,10 @@ Page {
 
     }
 
+    SearchResultPane {
+        anchors.fill: parent
+        z: 2
+        state: searchPane.state
+        emptyHintEnabled: searchPane.text.length >=3
+    }
 }

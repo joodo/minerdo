@@ -37,6 +37,8 @@ Page {
                 onClicked: {
                     searchPane.state = "show"
                     searchPane.focus = true
+                    SearchEngine.updateIndex(States.entryModel, ["question", "answer", "note"])
+                    SearchEngine.clearResult()
                 }
             }
         }
@@ -73,7 +75,7 @@ Page {
         onClicked: notebookEditPage.newTriggered()
 
         Material.elevation: 10
-        z: Material.elevation
+        z: 1
         anchors {
             right: parent.right; rightMargin: UI.dp(30)
             bottom: parent.bottom; bottomMargin: UI.dp(30)
@@ -82,5 +84,12 @@ Page {
         Material.background: Material.Green
         width: UI.dp(80); height: width
         font.pointSize: 30 // TODO: replace it with icon
+    }
+
+    SearchResultPane {
+        anchors.fill: parent
+        z: 2
+        state: searchPane.state
+        emptyHintEnabled: searchPane.text.length >=3
     }
 }

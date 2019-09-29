@@ -18,6 +18,7 @@ SOURCES += \
         itemmodel.cpp \
         main.cpp \
         notebookmodel.cpp \
+        searchengine.cpp \
         sqlqmlmodel.cpp
 
 RESOURCES += qml.qrc
@@ -37,6 +38,7 @@ HEADERS += \
     entrymodel.h \
     itemmodel.h \
     notebookmodel.h \
+    searchengine.h \
     sqlqmlmodel.h
 
 macx {

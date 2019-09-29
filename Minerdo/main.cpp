@@ -9,6 +9,7 @@
 #include "entrymodel.h"
 #include "itemmodel.h"
 #include "notebookmodel.h"
+#include "searchengine.h"
 
 int main(int argc, char *argv[])
 {
@@ -35,6 +36,9 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "Minerdo", 1, 0, "UI");
     qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "Minerdo", 1, 0, "States");
     qmlRegisterSingletonType(QUrl("qrc:/Actions.qml"), "Minerdo", 1, 0, "Actions");
+
+    auto context = engine.rootContext();
+    context->setContextProperty("SearchEngine", SearchEngine::instance());
 
     const QUrl url(QStringLiteral("qrc:/MainWindow.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

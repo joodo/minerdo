@@ -23,5 +23,7 @@
         <file>material-icons/edit.svg</file>
         <file>material-icons/keyboard_arrow_left.svg</file>
         <file>SearchPane.qml</file>
+        <file>SearchResultPane.qml</file>
+        <file>material-icons/no_result.svg</file>
     </qresource>
 </RCC>
