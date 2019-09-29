@@ -20,6 +20,7 @@ ComboBox {
         }
     }
 
+    // TODO: change other width calculate like this!
     TextMetrics {
         id: textMetrics
     }
