@@ -24,7 +24,6 @@ Page {
             }
             Label {
                 Layout.fillWidth: true
-                horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: notebookEditPage.title
             }

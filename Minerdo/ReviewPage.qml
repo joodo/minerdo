@@ -52,13 +52,12 @@ Page {
             }
 
             ToolButton {
-                text: "<"
+                icon.source: "qrc:/material-icons/keyboard_arrow_left.svg"
                 onClicked: reviewPage.backClicked()
 
             }
             Label {
                 Layout.fillWidth: true
-                horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: reviewPage.title
             }
@@ -67,7 +66,7 @@ Page {
                 onClicked: States.reviewCount = 0
             }
             ToolButton {
-                text: "✎"
+                icon.source: "qrc:/material-icons/edit.svg"
                 onClicked: reviewPage.editTriggered()
             }
         }

@@ -18,12 +18,11 @@ Page {
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                text: "<"
+                icon.source: "qrc:/material-icons/keyboard_arrow_left.svg"
                 onClicked: notebookDetailPage.backClicked()
             }
             Label {
                 Layout.fillWidth: true
-                horizontalAlignment: Qt.AlignHCenter // TODO: make title align left
                 verticalAlignment: Qt.AlignVCenter
                 text: notebookDetailPage.title
             }

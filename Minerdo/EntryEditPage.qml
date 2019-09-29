@@ -16,13 +16,12 @@ Page {
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                text: "<"
+                icon.source: "qrc:/material-icons/keyboard_arrow_left.svg"
                 onClicked: entryEditPage.backTriggered()
 
             }
             Label {
                 Layout.fillWidth: true
-                horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
                 text: entryEditPage.title
             }
