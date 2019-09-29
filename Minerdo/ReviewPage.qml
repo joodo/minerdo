@@ -41,7 +41,7 @@ Page {
 
     Component.onCompleted: Actions.pickRandomEntry()
 
-    title: States.currentNotebook.name
+    title: States.currentNotebook.name || qsTr("Review")
 
     header: ToolBar {
         height: implicitHeight + progressBar.height
