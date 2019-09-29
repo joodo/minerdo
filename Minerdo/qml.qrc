@@ -21,9 +21,13 @@
         <file>material-icons/library_books.svg</file>
         <file>material-icons/close.svg</file>
         <file>material-icons/edit.svg</file>
-        <file>material-icons/keyboard_arrow_left.svg</file>
+        <file>material-icons/chevron_left.svg</file>
         <file>SearchPane.qml</file>
         <file>SearchResultPane.qml</file>
         <file>material-icons/no_result.svg</file>
+        <file>material-icons/settings.svg</file>
+        <file>SettingsPage.qml</file>
+        <file>material-icons/chevron_right.svg</file>
+        <file>AutoSizeComboBox.qml</file>
     </qresource>
 </RCC>

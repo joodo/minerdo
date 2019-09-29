@@ -13,6 +13,7 @@ Page {
     signal editTriggered()
     signal newTriggered()
     signal editEntryTriggered()
+    signal settingsTriggered()
 
     header: ToolBar {
         id: toolBar
@@ -72,13 +73,29 @@ Page {
         }
 
         RowLayout {
+            id: menuLayout
+
+            property real expandWidth
+            Component.onCompleted: expandWidth = implicitWidth
+            readonly property bool shouldCollapse: toolBar.height < toolBar.maxHeight/2 || expandWidth > toolBar.width
+
             anchors {
                 right: parent.right; bottom: parent.bottom
+            }
+            spacing: UI.dp(16)
+
+            CollapsableToolButton {
+                icon.source: "qrc:/material-icons/settings.svg"
+                text: qsTr("Settings")
+                state: menuLayout.shouldCollapse? "collapse" : "expand"
+                onClicked: {
+                    notebookListPage.settingsTriggered()
+                }
             }
             CollapsableToolButton {
                 icon.source: "qrc:/material-icons/library_books.svg"
                 text: qsTr("Review All")
-                state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
+                state: menuLayout.shouldCollapse? "collapse" : "expand"
                 onClicked: {
                     Actions.setCurrentNotebook(-1)
                     if (Actions.pickRandomEntry()) {
@@ -93,7 +110,7 @@ Page {
             CollapsableToolButton {
                 icon.source: "qrc:/material-icons/search.svg"
                 text: qsTr("Search")
-                state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
+                state: menuLayout.shouldCollapse? "collapse" : "expand"
                 onClicked: {
                     searchPane.state = "show"
                     searchPane.focus = true

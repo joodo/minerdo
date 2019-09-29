@@ -52,7 +52,7 @@ Page {
             }
 
             ToolButton {
-                icon.source: "qrc:/material-icons/keyboard_arrow_left.svg"
+                icon.source: "qrc:/material-icons/chevron_left.svg"
                 onClicked: reviewPage.backClicked()
 
             }

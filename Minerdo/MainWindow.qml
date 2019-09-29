@@ -28,6 +28,7 @@ ApplicationWindow {
                 onEditTriggered: stackView.push(entryListPageComponent)
                 onNewTriggered: stackView.push(notebookCreatePageComponent)
                 onEditEntryTriggered: stackView.push(entryEditPageComponent)
+                onSettingsTriggered: stackView.push(settingsPageComponent)
             }
         }
 
@@ -81,6 +82,13 @@ ApplicationWindow {
             id: entryCreatePageComponent
             EntryEditPage {
                 state: "create"
+                onBackTriggered: stackView.pop()
+            }
+        }
+
+        Component {
+            id: settingsPageComponent
+            SettingsPage {
                 onBackTriggered: stackView.pop()
             }
         }
