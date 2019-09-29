@@ -19,7 +19,7 @@ Page {
         RowLayout {
             anchors.fill: parent
             ToolButton {
-                text: "<"
+                icon.source: "qrc:/material-icons/keyboard_arrow_left.svg"
                 onClicked: notebookEditPage.backTriggered()
             }
             Label {
@@ -29,9 +29,22 @@ Page {
                 text: notebookEditPage.title
             }
             ToolButton {
-                text: "✎"
+                icon.source: "qrc:/material-icons/edit.svg"
                 onClicked: notebookEditPage.editNotebookTriggered()
             }
+            ToolButton {
+                icon.source: "qrc:/material-icons/search.svg"
+                onClicked: {
+                    searchPane.state = "show"
+                    searchPane.focus = true
+                }
+            }
+        }
+
+        SearchPane {
+            id: searchPane
+            anchors.fill: parent
+            state: "hide"
         }
     }
 

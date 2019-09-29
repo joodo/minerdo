@@ -20,5 +20,8 @@
         <file>material-icons/search.svg</file>
         <file>material-icons/library_books.svg</file>
         <file>material-icons/close.svg</file>
+        <file>material-icons/edit.svg</file>
+        <file>material-icons/keyboard_arrow_left.svg</file>
+        <file>SearchPane.qml</file>
     </qresource>
 </RCC>

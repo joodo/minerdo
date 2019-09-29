@@ -98,29 +98,11 @@ Page {
             }
         }
 
-        Pane {
+        SearchPane {
             id: searchPane
             anchors.fill: parent
-            visible: opacity !== 0
             state: "hide"
-            Behavior on opacity { OpacityAnimator { duration: UI.controlsDuration } }
-            TextField {
-                id: searchField
-                focus: true
-                anchors.fill: parent
-                background: Item {}
-                topPadding: 0
-                bottomPadding: 0
-                placeholderText: qsTr("Search entries")
-                selectByMouse: true
-                color: Material.primaryTextColor
-            }
-            ToolButton {
-                anchors { right: parent.right; verticalCenter: parent.verticalCenter }
-                icon.source: "qrc:/material-icons/close.svg"
-                icon.color: Material.primaryTextColor
-                onClicked: searchPane.state = "hide"
-            }
+            onStateChanged: if (state === "show") collapseToolbarAnimation.start()
 
             NumberAnimation {
                 id: collapseToolbarAnimation
@@ -130,31 +112,8 @@ Page {
                 duration: UI.controlsDuration
                 onFinished: {
                     searchPane.focus = true
-                    searchField.focus = true
                 }
             }
-
-            states: [
-                State {
-                    name: "show"
-                    PropertyChanges {
-                        target: searchPane
-                        opacity: 1
-                    }
-                    PropertyChanges {
-                        target: collapseToolbarAnimation
-                        running: true
-                    }
-                },
-                State {
-                    name: "hide"
-                    PropertyChanges {
-                        target: searchPane
-                        opacity: 0
-                    }
-                }
-
-            ]
         }
     }
 
