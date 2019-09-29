@@ -16,7 +16,6 @@ Pane {
 
     height: UI.dp(184); width: UI.cardWidth
     padding: 0
-    hoverEnabled: true
     Material.elevation: noteBookCard.hovered? 4:0
     Behavior on Material.elevation { NumberAnimation { duration: UI.controlsDuration }}
 

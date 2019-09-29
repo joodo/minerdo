@@ -16,5 +16,9 @@
         <file>CollapsableToolButton.qml</file>
         <file>ColorRadioButton.qml</file>
         <file>axios.js</file>
+        <file>CreateCard.qml</file>
+        <file>material-icons/search.svg</file>
+        <file>material-icons/library_books.svg</file>
+        <file>material-icons/close.svg</file>
     </qresource>
 </RCC>

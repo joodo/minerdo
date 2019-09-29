@@ -74,8 +74,8 @@ Page {
                 right: parent.right; bottom: parent.bottom
             }
             CollapsableToolButton {
-                expandText: qsTr("Review All")
-                collapsedText: "✓"
+                icon.source: "qrc:/material-icons/library_books.svg"
+                text: qsTr("Review All")
                 state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
                 onClicked: {
                     Actions.setCurrentNotebook(-1)
@@ -89,11 +89,72 @@ Page {
                 }
             }
             CollapsableToolButton {
-                expandText: qsTr("New Notebook")
-                collapsedText: "＋"
+                icon.source: "qrc:/material-icons/search.svg"
+                text: qsTr("Search")
                 state: toolBar.height < toolBar.maxHeight / 2? "collapse" : "expand"
-                onClicked: notebookListPage.newTriggered()
+                onClicked: {
+                    searchPane.state = "show"
+                }
             }
+        }
+
+        Pane {
+            id: searchPane
+            anchors.fill: parent
+            visible: opacity !== 0
+            state: "hide"
+            Behavior on opacity { OpacityAnimator { duration: UI.controlsDuration } }
+            TextField {
+                id: searchField
+                focus: true
+                anchors.fill: parent
+                background: Item {}
+                topPadding: 0
+                bottomPadding: 0
+                placeholderText: qsTr("Search entries")
+                selectByMouse: true
+                color: Material.primaryTextColor
+            }
+            ToolButton {
+                anchors { right: parent.right; verticalCenter: parent.verticalCenter }
+                icon.source: "qrc:/material-icons/close.svg"
+                icon.color: Material.primaryTextColor
+                onClicked: searchPane.state = "hide"
+            }
+
+            NumberAnimation {
+                id: collapseToolbarAnimation
+                target: toolBar
+                property: "height"
+                to: toolBar.implicitHeight
+                duration: UI.controlsDuration
+                onFinished: {
+                    searchPane.focus = true
+                    searchField.focus = true
+                }
+            }
+
+            states: [
+                State {
+                    name: "show"
+                    PropertyChanges {
+                        target: searchPane
+                        opacity: 1
+                    }
+                    PropertyChanges {
+                        target: collapseToolbarAnimation
+                        running: true
+                    }
+                },
+                State {
+                    name: "hide"
+                    PropertyChanges {
+                        target: searchPane
+                        opacity: 0
+                    }
+                }
+
+            ]
         }
     }
 
@@ -129,13 +190,6 @@ Page {
             id: flow
             spacing: UI.dp(16)
             anchors { left: parent.left; right: parent.right }
-//            move: transition
-//            add: transition
-//            Transition {
-//                id: transition
-//                XAnimator { duration: UI.mediumExpandDuration }
-//                YAnimator { duration: UI.mediumExpandDuration }
-//            }
 
             Repeater {
                 model: States.notebookModel
@@ -158,6 +212,10 @@ Page {
                         notebookListPage.editTriggered()
                     }
                 }
+            }
+
+            CreateCard {
+                onClicked: notebookListPage.newTriggered()
             }
         }
 

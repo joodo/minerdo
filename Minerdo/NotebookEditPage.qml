@@ -23,7 +23,7 @@ Page {
             }
             Label {
                 Layout.fillWidth: true
-                horizontalAlignment: Qt.AlignHCenter
+                horizontalAlignment: Qt.AlignHCenter // TODO: make title align left
                 verticalAlignment: Qt.AlignVCenter
                 text: notebookDetailPage.title
             }

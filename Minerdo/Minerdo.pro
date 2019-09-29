@@ -46,3 +46,6 @@ macx {
 win32 {
     RC_ICONS = logo.ico
 }
+
+DISTFILES += \
+    material-icons/cancel.svg

@@ -7,22 +7,19 @@ import Minerdo 1.0
 
 ToolButton {
     id: toolButton
-    property string collapsedText
-    property string expandText
     property bool initedState: false
 
     onStateChanged: {
         // avoid component blink on loading finished
         if (!initedState) {
             initedState = true
-            text = state === "collapse"? collapsedText : expandText
             return
         }
         if (state === "collapse") {
-            textChangePropertyAction.value = collapsedText
+            displayChangePropertyAction.value = AbstractButton.IconOnly
             animation.restart()
         } else if (state === "expand") {
-            textChangePropertyAction.value = expandText
+            displayChangePropertyAction.value = AbstractButton.TextBesideIcon
             animation.restart()
         } else {
             print("Unacceptable state:", state)
@@ -31,18 +28,18 @@ ToolButton {
 
     SequentialAnimation {
         id: animation
-        PropertyAnimation {
+        NumberAnimation {
             target: toolButton.contentItem
             property: "opacity"
             to: 0
             duration: UI.fadeOutDuration
         }
         PropertyAction {
-            id: textChangePropertyAction
+            id: displayChangePropertyAction
             target: toolButton
-            property: "text"
+            property: "display"
         }
-        PropertyAnimation {
+        NumberAnimation {
             target: toolButton.contentItem
             property: "opacity"
             to: 1
