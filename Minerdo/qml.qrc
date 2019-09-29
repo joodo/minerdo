@@ -29,5 +29,6 @@
         <file>SettingsPage.qml</file>
         <file>material-icons/chevron_right.svg</file>
         <file>AutoSizeComboBox.qml</file>
+        <file>Settings.qml</file>
     </qresource>
 </RCC>

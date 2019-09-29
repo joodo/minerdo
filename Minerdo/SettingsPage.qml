@@ -38,29 +38,67 @@ Page {
             // Interface: language / darkmode
             Label {
                 text: qsTr("Interface")
-                font.pointSize: UI.dp(16)
+                font.pointSize: UI.dp(32)
+                color: Material.hintTextColor
                 Layout.fillWidth: true
             }
-
+/*
+            Label {
+                text: qsTr("Language")
+                font.bold: true
+                Layout.topMargin: UI.dp(20)
+            }
             Label {
                 text: qsTr("Choose the languages used to display menus and messages from Minerdo.")
                 wrapMode: Text.Wrap
                 Layout.fillWidth: true
-                Layout.topMargin: UI.dp(20)
             }
             AutoSizeComboBox {
                 model: ["System(English)", "English", "Chinese"]
             }
-
+*/
 
             Label {
-                text: qsTr("Choose theme to control how user interface display.")
-                wrapMode: Text.Wrap
-                Layout.fillWidth: true
+                text: qsTr("Theme")
+                font.bold: true
                 Layout.topMargin: UI.dp(20)
             }
             AutoSizeComboBox {
-                model: ["System(Light)", "Light", "Dark"]
+                id: themeComboBox
+                textRole: "key"
+                model: ListModel {
+                    ListElement { key: "Light"; value: "Light" }
+                    ListElement { key: "Dark"; value: "Dark" }
+                }
+                onActivated: {
+                    const value = model.get(index).value
+                    Settings.userInterface.theme = value
+                }
+                Component.onCompleted: {
+                    model.insert(0, {
+                                     "key": "System" + (themeTestItem.Material.theme === Material.Light? "(Light)" : "(Dark)"),
+                                     "value": "System"
+                                 })
+                    for (let i = 0; i < model.count; i++) {
+                        if (Settings.userInterface.theme === model.get(i).value) {
+                            currentIndex = i
+                            break
+                        }
+                    }
+                }
+                Item {
+                    id: themeTestItem
+                    Material.theme: Material.System
+                }
+            }
+            Label {
+                background: Rectangle {
+                    color: Material.color(Material.BlueGrey, UI.backgroundShade)
+                }
+                text: "⚠︎ " + qsTr("Restart Minerdo to apply these changes.")
+                visible: Settings.userInterface.theme !== Settings.init.interface.theme
+                padding: UI.dp(8)
+                font.pointSize: UI.dp(14)
             }
 
             Rectangle {

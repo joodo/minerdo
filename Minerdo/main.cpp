@@ -4,7 +4,7 @@
 #include <QString>
 #include <QSqlDatabase>
 #include <QDir>
-#include <QIcon>
+#include <QSettings>
 
 #include "entrymodel.h"
 #include "itemmodel.h"
@@ -16,6 +16,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+    app.setOrganizationName("Joodo");
+    app.setOrganizationDomain("Joodo.com");
+    app.setApplicationName("Minerdo");
+
+    QSettings settings;
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME",
+            settings.value("interface/theme").toString().toUtf8());
 
     // sql
     auto database = QSqlDatabase::addDatabase("QSQLITE");
@@ -25,14 +32,12 @@ int main(int argc, char *argv[])
     database.open();
     //qDebug() << database.tables();
 
-    // icons
-    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << ":/material-icons");
-
     QQmlApplicationEngine engine;
 
     qmlRegisterType<EntryModel>("Minerdo", 1, 0, "EntryModel");
     qmlRegisterType<NotebookModel>("Minerdo", 1, 0, "NotebookModel");
     qmlRegisterType<ItemModel>("Minerdo", 1, 0, "ItemModel");
+    qmlRegisterSingletonType(QUrl("qrc:/Settings.qml"), "Minerdo", 1, 0, "Settings");
     qmlRegisterSingletonType(QUrl("qrc:/UI.qml"), "Minerdo", 1, 0, "UI");
     qmlRegisterSingletonType(QUrl("qrc:/States.qml"), "Minerdo", 1, 0, "States");
     qmlRegisterSingletonType(QUrl("qrc:/Actions.qml"), "Minerdo", 1, 0, "Actions");
