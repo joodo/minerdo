@@ -2,14 +2,15 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
+import Qt.labs.settings 1.1 as QtLabs
 
 import Minerdo 1.0
 
 ApplicationWindow {
     id: window
     visible: true
-    width: 640
-    height: 480
+    width: UI.cardWidth*2 + UI.dp(64)
+    height: 400
     minimumWidth: UI.cardWidth + UI.dp(48)
     minimumHeight: UI.dp(360)
     title: qsTr("Minerdo")
@@ -101,5 +102,13 @@ ApplicationWindow {
     Connections {
         target: UI
         onShowMessage: snackbar.show(message)
+    }
+
+    QtLabs.Settings {
+        category: "interface"
+        property alias windowX: window.x
+        property alias windowY: window.y
+        property alias windowWidth: window.width
+        property alias windowHeight: window.height
     }
 }
