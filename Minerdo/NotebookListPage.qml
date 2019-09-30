@@ -52,36 +52,11 @@ Item {
 
             height: maxHeight
 
-            Rectangle {
+            BackgroundRect {
                 id: backgroundRect
-                // TODO: make a background photo cache to avoid blinking
                 anchors.fill: parent
-                color: "black"
-                opacity: 0
-                Image {
-                    Component.onCompleted: {
-                        Axios.instance.get("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&ensearch=1")
-                        .then((response) => {
-                                  let url = response.data.images[0].url
-                                  url = "http://www.bing.com" + url
-                                  source = url
-                              })
-                    }
-                    onStatusChanged: if (status === Image.Ready) backgroundShowAnimator.start()
-                    anchors.fill: parent
-                    fillMode: Image.PreserveAspectCrop
-                    opacity: .6
-                }
-                OpacityAnimator {
-                    id: backgroundShowAnimator
-                    duration: UI.cardExpandDuration
-                    target: backgroundRect
-                    to: ((toolBar.height - toolBar.implicitHeight) /
-                         (toolBar.maxHeight - toolBar.implicitHeight))
-                    onFinished: backgroundRect.opacity = Qt.binding(() => (
-                                                                        (toolBar.height - toolBar.implicitHeight) /
-                                                                        (toolBar.maxHeight - toolBar.implicitHeight)))
-                }
+                minimumHeight: toolBar.implicitHeight
+                maximumHeight: toolBar.maxHeight
             }
 
             Label {

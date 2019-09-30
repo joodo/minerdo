@@ -30,5 +30,6 @@
         <file>material-icons/chevron_right.svg</file>
         <file>AutoSizeComboBox.qml</file>
         <file>Settings.qml</file>
+        <file>BackgroundRect.qml</file>
     </qresource>
 </RCC>

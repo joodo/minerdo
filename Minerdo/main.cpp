@@ -10,6 +10,7 @@
 #include "itemmodel.h"
 #include "notebookmodel.h"
 #include "searchengine.h"
+#include "utils.h"
 
 int main(int argc, char *argv[])
 {
@@ -44,6 +45,7 @@ int main(int argc, char *argv[])
 
     auto context = engine.rootContext();
     context->setContextProperty("SearchEngine", SearchEngine::instance());
+    context->setContextProperty("Utils", Utils::instance());
 
     const QUrl url(QStringLiteral("qrc:/MainWindow.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

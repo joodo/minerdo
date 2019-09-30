@@ -19,7 +19,8 @@ SOURCES += \
         main.cpp \
         notebookmodel.cpp \
         searchengine.cpp \
-        sqlqmlmodel.cpp
+        sqlqmlmodel.cpp \
+        utils.cpp
 
 RESOURCES += qml.qrc
 
@@ -39,7 +40,8 @@ HEADERS += \
     itemmodel.h \
     notebookmodel.h \
     searchengine.h \
-    sqlqmlmodel.h
+    sqlqmlmodel.h \
+    utils.h
 
 macx {
     ICON = logo.icns
