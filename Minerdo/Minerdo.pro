@@ -17,6 +17,7 @@ SOURCES += \
         entrymodel.cpp \
         itemmodel.cpp \
         main.cpp \
+        messagehandler.cpp \
         notebookmodel.cpp \
         searchengine.cpp \
         sqlqmlmodel.cpp \
@@ -38,6 +39,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     entrymodel.h \
     itemmodel.h \
+    messagehandler.h \
     notebookmodel.h \
     searchengine.h \
     sqlqmlmodel.h \

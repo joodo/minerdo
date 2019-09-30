@@ -15,7 +15,7 @@ Pane {
     Behavior on opacity { OpacityAnimator { duration: UI.controlsDuration } }
     TextField {
         id: searchField
-        focus: true
+        focus: visible
         anchors.fill: parent
         background: Item {}
         topPadding: 0

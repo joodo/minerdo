@@ -12,6 +12,9 @@ public:
 
 public slots:
     QUrl urlFromPath(const QString& path);
+    QString absolutePath(const QString& path) const;
+    QString absoluteFilePath(const QString& path, const QString& filename) const;
+    QString currentPath() const;
     bool save(const QString& filename, const QByteArray& data);
     bool fileExists(const QString& path);
 

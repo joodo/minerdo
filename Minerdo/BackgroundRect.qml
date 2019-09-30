@@ -11,7 +11,7 @@ Rectangle {
 
     property real minimumHeight
     property real maximumHeight
-    readonly property string imagePath: ".background"
+    readonly property string imagePath: Utils.absoluteFilePath(Utils.currentPath(), ".background")
 
     function opacityFromHeight() {
         return (height - minimumHeight) / (maximumHeight - minimumHeight)
@@ -42,8 +42,13 @@ Rectangle {
                       }
                   })
             .then(response => {
-                      if (Utils.save(backgroundRect.imagePath, response.data) &&
-                          status !== Image.Ready) {
+                      print("get pic")
+                      if (!Utils.save(backgroundRect.imagePath, response.data)) {
+                          return Promise.reject("cannot save file: " + backgroundRect.imagePath)
+                      }
+
+                      print("change")
+                      if (status !== Image.Ready) {
                           // reload image
                           const t = source
                           source = ""

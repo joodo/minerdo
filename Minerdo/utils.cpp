@@ -1,5 +1,6 @@
 #include "utils.h"
 
+#include <QCoreApplication>
 #include <QDir>
 #include <qDebug>
 
@@ -19,6 +20,21 @@ QUrl Utils::urlFromPath(const QString &path)
     return QUrl::fromLocalFile(dir.absolutePath());
 }
 
+QString Utils::absolutePath(const QString &path) const
+{
+    return QDir(path).absolutePath();
+}
+
+QString Utils::absoluteFilePath(const QString &path, const QString &filename) const
+{
+    return QDir(path).absoluteFilePath(filename);
+}
+
+QString Utils::currentPath() const
+{
+    return QCoreApplication::applicationDirPath();
+}
+
 bool Utils::save(const QString &filename, const QByteArray &data)
 {
     QFile file(filename);
@@ -30,5 +46,5 @@ bool Utils::save(const QString &filename, const QByteArray &data)
 
 bool Utils::fileExists(const QString &path)
 {
-    return QDir(path).exists();
+    return  QFileInfo::exists(path);
 }
