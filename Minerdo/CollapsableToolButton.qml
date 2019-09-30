@@ -7,14 +7,8 @@ import Minerdo 1.0
 
 ToolButton {
     id: toolButton
-    property bool initedState: false
 
-    onStateChanged: {
-        // avoid component blink on loading finished
-        if (!initedState) {
-            initedState = true
-            return
-        }
+    function updateDisplayByState() {
         if (state === "collapse") {
             displayChangePropertyAction.value = AbstractButton.IconOnly
             animation.restart()

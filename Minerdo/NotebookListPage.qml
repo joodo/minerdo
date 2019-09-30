@@ -78,52 +78,19 @@ Item {
                 }
             }
 
-            RowLayout {
-                id: menuLayout
+            CollapsableMenu {
+                id: collapsableMenu
 
-                property real expandWidth
-                Component.onCompleted: expandWidth = implicitWidth
-                readonly property bool shouldCollapse: toolBar.height < toolBar.maxHeight/2 || expandWidth > toolBar.width
+                property bool shouldCollapse
+
+                Component.onCompleted: {
+                    const expandWidth = implicitWidth
+                    shouldCollapse = Qt.binding(() =>
+                                                toolBar.height < toolBar.maxHeight/2 || expandWidth > toolBar.width)
+                }
 
                 anchors {
                     right: parent.right; bottom: parent.bottom
-                }
-                spacing: UI.dp(16)
-
-                CollapsableToolButton {
-                    icon.source: "qrc:/material-icons/settings.svg"
-                    text: qsTr("Settings")
-                    state: menuLayout.shouldCollapse? "collapse" : "expand"
-                    onClicked: {
-                        notebookListPage.settingsTriggered()
-                    }
-                }
-                CollapsableToolButton {
-                    icon.source: "qrc:/material-icons/library_books.svg"
-                    text: qsTr("Review All")
-                    state: menuLayout.shouldCollapse? "collapse" : "expand"
-                    onClicked: {
-                        Actions.setCurrentNotebook(-1)
-                        if (Actions.pickRandomEntry()) {
-                            notebookListPage.reviewTriggered()
-                        } else {
-                            UI.showMessage({
-                                               "text": qsTr("There's no entry. Please create one.")
-                                           })
-                        }
-                    }
-                }
-                CollapsableToolButton {
-                    icon.source: "qrc:/material-icons/search.svg"
-                    text: qsTr("Search")
-                    state: menuLayout.shouldCollapse? "collapse" : "expand"
-                    onClicked: {
-                        searchPane.state = "show"
-                        searchPane.focus = true
-                        Actions.setCurrentNotebook(-1)
-                        SearchEngine.updateIndex(States.entryModel, ["question", "answer", "note"])
-                        SearchEngine.clearResult()
-                    }
                 }
             }
 

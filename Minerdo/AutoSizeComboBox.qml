@@ -22,6 +22,7 @@ ComboBox {
     implicitWidth: modelWidth + 2*leftPadding + 2*rightPadding
 
     // TODO: change other width calculate like this!
+    // TODO: refactor it to utils with QFontMetricsF class
     TextMetrics {
         id: textMetrics
     }

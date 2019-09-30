@@ -31,5 +31,6 @@
         <file>AutoSizeComboBox.qml</file>
         <file>Settings.qml</file>
         <file>BackgroundRect.qml</file>
+        <file>CollapsableMenu.qml</file>
     </qresource>
 </RCC>
