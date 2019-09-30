@@ -93,6 +93,12 @@ ApplicationWindow {
                 onBackTriggered: stackView.pop()
             }
         }
+
+        focus: true
+        Keys.onPressed: {
+            if (event.key === Qt.Key_AsciiTilde) debugWindow.show()
+            else event.accept = false
+        }
     }
 
     Snackbar {
@@ -110,5 +116,21 @@ ApplicationWindow {
         property alias windowY: window.y
         property alias windowWidth: window.width
         property alias windowHeight: window.height
+    }
+
+    ApplicationWindow {
+        id: debugWindow
+        title: "debug"
+        width: 300
+        height: 600
+        TextEdit {
+            id: logTextEdit
+            anchors.fill: parent
+
+            Connections {
+                target: MessageHandler
+                onLog: logTextEdit.text += msg + "\n"
+            }
+        }
     }
 }

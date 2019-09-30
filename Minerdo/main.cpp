@@ -11,6 +11,7 @@
 #include "notebookmodel.h"
 #include "searchengine.h"
 #include "utils.h"
+#include "messagehandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,9 +22,11 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("Joodo.com");
     app.setApplicationName("Minerdo");
 
+    // Material theme
     QSettings settings;
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME",
             settings.value("interface/theme").toString().toUtf8());
+
 
     // sql
     auto database = QSqlDatabase::addDatabase("QSQLITE");
@@ -46,6 +49,7 @@ int main(int argc, char *argv[])
     auto context = engine.rootContext();
     context->setContextProperty("SearchEngine", SearchEngine::instance());
     context->setContextProperty("Utils", Utils::instance());
+    context->setContextProperty("MessageHandler", MessageHandler::instance());
 
     const QUrl url(QStringLiteral("qrc:/MainWindow.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
