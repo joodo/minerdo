@@ -13,6 +13,7 @@ public:
 public slots:
     QUrl urlFromPath(const QString& path);
     bool save(const QString& filename, const QByteArray& data);
+    bool fileExists(const QString& path);
 
 private:
     static Utils* m_instance;

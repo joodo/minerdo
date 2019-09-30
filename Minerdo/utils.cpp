@@ -27,3 +27,8 @@ bool Utils::save(const QString &filename, const QByteArray &data)
     file.close();
     return true;
 }
+
+bool Utils::fileExists(const QString &path)
+{
+    return QDir(path).exists();
+}

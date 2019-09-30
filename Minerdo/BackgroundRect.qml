@@ -30,7 +30,8 @@ Rectangle {
             .then(response => {
                       let url = response.data.images[0].url
                       url = "http://www.bing.com" + url
-                      if (Settings.userInterface.backgroundUrl === url) {
+                      if (Settings.userInterface.backgroundUrl === url &&
+                          Utils.fileExists(backgroundRect.imagePath)) {
                           return Promise.reject("background cached")
                       } else {
                           Settings.userInterface.backgroundUrl = url
