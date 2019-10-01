@@ -18,7 +18,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        opacity = image.status===Image.Ready? opacityFromHeight() : 0
+        opacity = image.status===Image.Ready? Qt.binding(opacityFromHeight) : 0
     }
 
     color: "black"
@@ -42,12 +42,10 @@ Rectangle {
                       }
                   })
             .then(response => {
-                      print("get pic")
                       if (!Utils.save(backgroundRect.imagePath, response.data)) {
                           return Promise.reject("cannot save file: " + backgroundRect.imagePath)
                       }
 
-                      print("change")
                       if (status !== Image.Ready) {
                           // reload image
                           const t = source
