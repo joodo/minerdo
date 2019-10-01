@@ -123,13 +123,17 @@ ApplicationWindow {
         title: "debug"
         width: 300
         height: 600
-        TextEdit {
-            id: logTextEdit
+        ScrollView {
             anchors.fill: parent
-
-            Connections {
-                target: MessageHandler
-                onLog: logTextEdit.text += msg + "\n"
+            contentWidth: contentItem.width
+            TextEdit {
+                id: logTextEdit
+                anchors { left: parent.left; right: parent.right }
+                wrapMode: Text.Wrap
+                Connections {
+                    target: MessageHandler
+                    onLog: logTextEdit.text += msg + "\n"
+                }
             }
         }
     }
