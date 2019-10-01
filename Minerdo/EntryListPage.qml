@@ -89,7 +89,6 @@ Page {
         anchors.fill: parent
         z: 2
         state: searchPane.state
-        emptyHintEnabled: searchPane.text.length >=3
         onEntryClicked: entryListPage.editTriggered()
     }
 }

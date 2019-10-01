@@ -17,6 +17,11 @@ QVariantList SearchEngine::searchResult() const
     return m_searchResult;
 }
 
+bool SearchEngine::noResult() const
+{
+    return m_noResult;
+}
+
 void SearchEngine::updateIndex(QAbstractItemModel *model, const QStringList &fields)
 {
     m_data.clear();
@@ -65,12 +70,24 @@ void SearchEngine::search(const QString &query)
     }
 
     emit searchResultChanged(m_searchResult);
+
+    if (m_noResult != m_searchResult.isEmpty()) {
+        m_noResult = m_searchResult.isEmpty();
+        emit noResultChanged(m_noResult);
+    }
 }
 
 void SearchEngine::clearResult()
 {
-    m_searchResult.clear();
-    emit searchResultChanged(m_searchResult);
+    if (!m_searchResult.isEmpty()) {
+        m_searchResult.clear();
+        emit searchResultChanged(m_searchResult);
+    }
+
+    if (m_noResult) {
+        m_noResult = false;
+        emit noResultChanged(m_noResult);
+    }
 }
 
 QString SearchEngine::clipString(const QString &string, int pos)

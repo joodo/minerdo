@@ -35,9 +35,8 @@ Pane {
 
     ColumnLayout {
         id: emptyHint
-        Behavior on opacity { OpacityAnimator { duration: UI.controlsDuration } }
         z: -1
-        opacity: searchResultPane.emptyHintEnabled && SearchEngine.searchResult.length===0? 1 : 0
+        visible: SearchEngine.noResult
         anchors.centerIn: parent
         spacing: UI.dp(12)
         Image {
