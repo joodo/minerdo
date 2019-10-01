@@ -9,6 +9,8 @@ import "axios.js" as Axios
 Pane {
     id: searchResultPane
 
+    signal entryClicked()
+
     property bool emptyHintEnabled
 
     visible: opacity !== 0
@@ -20,7 +22,7 @@ Pane {
         delegate: ItemDelegate {
             onClicked: {
                 Actions.setCurrentEntry(modelData.index)
-                notebookListPage.editEntryTriggered()
+                searchResultPane.entryClicked()
             }
             
             anchors {

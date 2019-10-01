@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.13
 import Minerdo 1.0
 
 Page {
-    id: notebookEditPage
+    id: entryListPage
 
     signal backTriggered()
     signal editTriggered()
@@ -20,16 +20,16 @@ Page {
             anchors.fill: parent
             ToolButton {
                 icon.source: "qrc:/material-icons/chevron_left.svg"
-                onClicked: notebookEditPage.backTriggered()
+                onClicked: entryListPage.backTriggered()
             }
             Label {
                 Layout.fillWidth: true
                 verticalAlignment: Qt.AlignVCenter
-                text: notebookEditPage.title
+                text: entryListPage.title
             }
             ToolButton {
                 icon.source: "qrc:/material-icons/edit.svg"
-                onClicked: notebookEditPage.editNotebookTriggered()
+                onClicked: entryListPage.editNotebookTriggered()
             }
             ToolButton {
                 icon.source: "qrc:/material-icons/search.svg"
@@ -55,7 +55,7 @@ Page {
         delegate: ItemDelegate {
             onClicked: {
                 Actions.setCurrentEntry(index)
-                notebookEditPage.editTriggered()
+                entryListPage.editTriggered()
             }
 
             anchors {
@@ -71,7 +71,7 @@ Page {
     RoundButton {
         text: "+"
 
-        onClicked: notebookEditPage.newTriggered()
+        onClicked: entryListPage.newTriggered()
 
         Material.elevation: 10
         z: 1
@@ -90,5 +90,6 @@ Page {
         z: 2
         state: searchPane.state
         emptyHintEnabled: searchPane.text.length >=3
+        onEntryClicked: entryListPage.editTriggered()
     }
 }

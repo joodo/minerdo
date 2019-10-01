@@ -159,6 +159,7 @@ Item {
             z: 2
             state: searchPane.state
             emptyHintEnabled: searchPane.text.length >=3
+            onEntryClicked: notebookListPage.editEntryTriggered()
         }
     }
 }
