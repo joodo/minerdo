@@ -32,5 +32,7 @@
         <file>Settings.qml</file>
         <file>BackgroundRect.qml</file>
         <file>CollapsableMenu.qml</file>
+        <file>material-icons/add.svg</file>
+        <file>FloatingActionButton.qml</file>
     </qresource>
 </RCC>

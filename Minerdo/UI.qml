@@ -8,7 +8,7 @@ QtObject {
     signal showMessage(var message)
 
     function dp(pointSize) {
-        return pointSize * Screen.pixelDensity * 25.4 / 160
+        return Math.round(pointSize * Screen.pixelDensity * 25.4 / 160)
     }
 
     readonly property int controlsDuration: 100

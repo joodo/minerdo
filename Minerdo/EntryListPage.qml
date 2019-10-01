@@ -68,21 +68,15 @@ Page {
         ScrollBar.vertical: ScrollBar { }
     }
 
-    RoundButton {
-        text: "+"
-
-        onClicked: entryListPage.newTriggered()
-
-        Material.elevation: 10
-        z: 1
+    FloatingActionButton {
         anchors {
-            right: parent.right; rightMargin: UI.dp(30)
-            bottom: parent.bottom; bottomMargin: UI.dp(30)
+            right: parent.right; rightMargin: UI.dp(17)
+            bottom: parent.bottom; bottomMargin: UI.dp(17)
         }
-        highlighted: true
+        icon.source: "qrc:/material-icons/add.svg"
+        onClicked: entryListPage.newTriggered()
+        z: 1
         Material.background: Material.Green
-        width: UI.dp(80); height: width
-        font.pointSize: 30 // TODO: replace it with icon
     }
 
     SearchResultPane {
