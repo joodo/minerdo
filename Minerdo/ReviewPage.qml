@@ -84,7 +84,7 @@ Page {
             anchors {
                 left: parent.left; right: parent.right; bottom: parent.bottom
             }
-            height: UI.dp(8)
+            height: 6
 
             ToolTip.visible: hovered
             ToolTip.text: (qsTr("New: %1, Forgotten: %2, Remembered: %3, Memorized: %4")
@@ -134,14 +134,14 @@ Page {
         anchors.fill: parent
         width: parent.width
         contentWidth: contentItem.width
-        padding: UI.dp(20)
+        padding: UI.pagePadding
 
         ColumnLayout {
             width: parent.width
-            spacing: UI.dp(16)
+            spacing: UI.listSpacing
 
             Pane {
-                background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
+                background: Rectangle { radius: 6; color: Material.backgroundColor }
                 Material.background: Material.color(Material.LightBlue, UI.backgroundShade)
                 Layout.fillWidth: true
                 Label {
@@ -155,7 +155,7 @@ Page {
                 id: answerPane
 
                 visible: !answerMask.visible
-                background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
+                background: Rectangle { radius: 6; color: Material.backgroundColor }
                 Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
                 Layout.fillWidth: true
                 Label {
@@ -169,7 +169,7 @@ Page {
                 id: notePane
 
                 visible: !answerMask.visible && noteLabel.text
-                background: Rectangle { radius: UI.dp(8); color: Material.backgroundColor }
+                background: Rectangle { radius: 6; color: Material.backgroundColor }
                 Material.background: Material.color(Material.LightGreen, UI.backgroundShade)
                 Layout.fillWidth: true
                 Label {

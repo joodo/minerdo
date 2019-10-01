@@ -9,10 +9,10 @@ import Minerdo 1.0
 ApplicationWindow {
     id: window
     visible: true
-    width: UI.cardWidth*2 + UI.dp(64)
+    width: UI.cardWidth*2 + UI.pagePadding*2 + UI.listSpacing
     height: 400
-    minimumWidth: UI.cardWidth + UI.dp(48)
-    minimumHeight: UI.dp(360)
+    minimumWidth: UI.cardWidth + UI.pagePadding*2
+    minimumHeight: 300
     title: qsTr("Minerdo")
     flags: Qt.WindowFullscreenButtonHint
 

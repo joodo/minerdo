@@ -11,13 +11,13 @@ Pane {
 
     signal clicked()
 
-    height: UI.dp(184); width: UI.cardWidth
+    height: UI.cardHeight; width: UI.cardWidth
     Material.elevation: createCard.hovered? 4:0
     Behavior on Material.elevation { NumberAnimation { duration: UI.controlsDuration }}
 
     background: Rectangle {
         color: Material.background
-        radius: UI.dp(8)
+        radius: 8
         border.color: Material.color(Material.Grey)
         border.width: 1
 
@@ -29,7 +29,7 @@ Pane {
 
     Rectangle {
         anchors.centerIn: parent
-        width: UI.dp(8); height: UI.dp(72)
+        width: 6; height: 60
         radius: width
         color: Material.color(Material.Grey)
         Rectangle {

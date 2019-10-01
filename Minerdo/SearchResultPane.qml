@@ -38,14 +38,14 @@ Pane {
         z: -1
         visible: SearchEngine.noResult
         anchors.centerIn: parent
-        spacing: UI.dp(12)
+        spacing: UI.listSpacing
         Image {
             source: "qrc:/material-icons/no_result.svg"
             Layout.alignment: Qt.AlignHCenter
         }
         Label {
             text: qsTr("No Result")
-            font.pointSize: UI.dp(24)
+            font.pointSize: 20
             Layout.alignment: Qt.AlignHCenter
         }
     }

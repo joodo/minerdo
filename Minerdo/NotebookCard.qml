@@ -14,20 +14,28 @@ Pane {
     signal clicked()
     signal editClicked()
 
-    height: UI.dp(184); width: UI.cardWidth
-    padding: 0
+    height: UI.cardHeight; width: UI.cardWidth
+    padding: 12
     Material.elevation: noteBookCard.hovered? 4:0
     Behavior on Material.elevation { NumberAnimation { duration: UI.controlsDuration }}
 
     background: Rectangle {
         color: Material.color(noteBookCard.materialColor, UI.backgroundShade)
-        radius: UI.dp(8)
+        radius: 8
         border.color: Material.color(Material.Grey)
         border.width: 1
-
         layer.enabled: noteBookCard.enabled && noteBookCard.Material.elevation > 0
         layer.effect: ElevationEffect {
             elevation: noteBookCard.Material.elevation
+        }
+        clip: true
+        Rectangle {
+            anchors {
+                verticalCenter: parent.top; horizontalCenter: parent.horizontalCenter
+            }
+            color: Material.color(noteBookCard.materialColor)
+            height: 8; width: parent.width - 80
+            radius: 4
         }
     }
 
@@ -37,15 +45,21 @@ Pane {
     }
 
     Label {
-        x: UI.dp(16); y: UI.dp(16)
-        font.pointSize: 24
+        font.pointSize: 22
         text: noteBookCard.text
+        anchors {
+            left: parent.left; leftMargin: 8
+            right: parent.right; rightMargin: 8
+            top: parent.top; topMargin: 4
+        }
+        wrapMode: Text.Wrap
+        //anchors.centerIn: parent
     }
 
     Button {
         flat: true
         text: qsTr("Edit")
-        anchors { bottom: parent.bottom; right: parent.right; rightMargin: UI.dp(16) }
+        anchors { bottom: parent.bottom; bottomMargin: -8; right: parent.right }
         visible: noteBookCard.hovered
         background: Item {}
         highlighted: hovered

@@ -7,8 +7,9 @@ import Minerdo 1.0
 
 RoundButton {
     icon.color: Material.toolTextColor
-    width: UI.dp(60); height: width
-    Material.elevation: 10
+    width: 48; height: width
+    Material.elevation: pressed? 12 : hovered? 8 : 6
+    Behavior on Material.elevation { NumberAnimation { duration: UI.controlsDuration }}
     topInset: 0; bottomInset: 0; leftInset: 0; rightInset: 0
     display: AbstractButton.IconOnly
 }

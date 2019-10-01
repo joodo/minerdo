@@ -70,8 +70,8 @@ Page {
 
     FloatingActionButton {
         anchors {
-            right: parent.right; rightMargin: UI.dp(17)
-            bottom: parent.bottom; bottomMargin: UI.dp(17)
+            right: parent.right; rightMargin: 16
+            bottom: parent.bottom; bottomMargin: 16
         }
         icon.source: "qrc:/material-icons/add.svg"
         onClicked: entryListPage.newTriggered()

@@ -30,7 +30,7 @@ Page {
 
     ScrollView {
         anchors.fill: parent
-        padding: UI.dp(20)
+        padding: UI.pagePadding
         contentWidth: contentItem.width
         focus: true
 

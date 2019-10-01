@@ -7,10 +7,6 @@ import QtQuick.Controls.Material 2.13
 QtObject {
     signal showMessage(var message)
 
-    function dp(pointSize) {
-        return Math.round(pointSize * Screen.pixelDensity * 25.4 / 160)
-    }
-
     readonly property int controlsDuration: 100
     readonly property int fadeInDuration: 150
     readonly property int fadeOutDuration: 75
@@ -20,7 +16,10 @@ QtObject {
     readonly property int cardCollapseDuration: 250
 
 
-    readonly property real cardWidth: dp(344)
+    readonly property real cardWidth: 270
+    readonly property real cardHeight: 132
+    readonly property real pagePadding: 16
+    readonly property real listSpacing: 12
 
     readonly property int backgroundShade: Material.theme === Material.Light? Material.Shade100 : Material.Shade500
 }

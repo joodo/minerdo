@@ -48,7 +48,7 @@ Item {
 
         header: ToolBar {
             id: toolBar
-            readonly property real maxHeight: UI.dp(240)
+            readonly property real maxHeight: 200
 
             height: maxHeight
 
@@ -117,11 +117,11 @@ Item {
             id: scrollView
             anchors.fill: parent
             contentWidth: contentItem.width
-            padding: UI.dp(20)
+            padding: UI.pagePadding
 
             Flow {
                 id: flow
-                spacing: UI.dp(16)
+                spacing: UI.listSpacing
                 anchors { left: parent.left; right: parent.right }
 
                 Repeater {

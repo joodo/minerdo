@@ -11,10 +11,10 @@ RadioButton {
 
     indicator: null
     contentItem: Item {
-        implicitHeight: UI.dp(32); implicitWidth: UI.dp(48)
+        implicitHeight: 26; implicitWidth: 36
         Rectangle {
             anchors { fill: parent; margins: checked? 0 : 1 }
-            radius: UI.dp(8)
+            radius: 4
             color: Material.color(radioButton.color, checked? Material.Shade500:UI.backgroundShade)
         }
     }

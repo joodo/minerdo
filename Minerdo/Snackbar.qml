@@ -9,7 +9,7 @@ Pane {
     id: snackbar
     
     readonly property real lifeTime: 4000
-    readonly property real position: UI.dp(32)
+    readonly property real position: 60
     property var messageQueue: []
     
     function show(newMessage) {
@@ -29,11 +29,11 @@ Pane {
         opacity = 1
     }
     
-    Material.elevation: 2
+    Material.elevation: 6
     z: 1
     opacity: 0
     Material.theme: parent.Material.theme === Material.Light? Material.Dark : Material.Light
-    Component.onCompleted: background.radius = UI.dp(4)
+    Component.onCompleted: background.radius = 4
     Behavior on opacity { NumberAnimation {
             alwaysRunToEnd: true
             duration: to === 1? UI.fadeInDuration : UI.fadeOutDuration

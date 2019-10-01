@@ -30,7 +30,7 @@ Page {
     ScrollView {
         anchors.fill: parent
         contentWidth: contentItem.width
-        padding: UI.dp(16)
+        padding: UI.pagePadding
 
         ColumnLayout {
             anchors { left: parent.left; right: parent.right }
@@ -38,7 +38,7 @@ Page {
             // Interface: language / darkmode
             Label {
                 text: qsTr("Interface")
-                font.pointSize: UI.dp(32)
+                font.pointSize: 24
                 color: Material.hintTextColor
                 Layout.fillWidth: true
             }
@@ -46,7 +46,7 @@ Page {
             Label {
                 text: qsTr("Language")
                 font.bold: true
-                Layout.topMargin: UI.dp(20)
+                Layout.topMargin: UI.pagePadding
             }
             Label {
                 text: qsTr("Choose the languages used to display menus and messages from Minerdo.")
@@ -61,7 +61,7 @@ Page {
             Label {
                 text: qsTr("Theme")
                 font.bold: true
-                Layout.topMargin: UI.dp(20)
+                Layout.topMargin: UI.pagePadding
             }
             AutoSizeComboBox {
                 id: themeComboBox
@@ -97,15 +97,15 @@ Page {
                 }
                 text: "⚠︎ " + qsTr("Restart Minerdo to apply these changes.")
                 visible: Settings.userInterface.theme !== Settings.init.interface.theme
-                padding: UI.dp(8)
-                font.pointSize: UI.dp(14)
+                padding: 6
+                font.pointSize: 11
             }
 
             Rectangle {
                 Layout.alignment: Qt.AlignHCenter
-                Layout.leftMargin: -UI.dp(16)
-                Layout.rightMargin: -UI.dp(16)
-                Layout.topMargin: UI.dp(20)
+                Layout.leftMargin: -UI.pagePadding
+                Layout.rightMargin: -UI.pagePadding
+                Layout.topMargin: UI.pagePadding
                 Layout.fillWidth: true
                 height: 1
                 color: Material.color(Material.Grey)

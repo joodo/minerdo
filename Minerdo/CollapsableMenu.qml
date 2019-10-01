@@ -20,7 +20,7 @@ RowLayout {
                                    }
                                })
 
-    spacing: UI.dp(16)
+    spacing: 12
     
     CollapsableToolButton {
         icon.source: "qrc:/material-icons/settings.svg"
