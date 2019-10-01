@@ -22,9 +22,13 @@ Rectangle {
     }
 
     color: "black"
+    clip: true
 
     Image {
         id: image
+        readonly property real stretchRate: 0.01
+        property real offsetX: (mouseArea.mouseX-backgroundRect.width/2)*stretchRate
+        property real offsetY: (mouseArea.mouseY-backgroundRect.height/2)*stretchRate
         Component.onCompleted: {
             Axios.instance.get("https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&ensearch=1")
             .then(response => {
@@ -56,10 +60,19 @@ Rectangle {
                   })
             .catch(reason => print(reason))
         }
-        anchors.fill: parent
-        fillMode: Image.Tile
+        width: (stretchRate*2+1) * backgroundRect.width
+        height: (stretchRate*2+1) * backgroundRect.height
+        x: -stretchRate*backgroundRect.width + offsetX
+        y: -stretchRate*backgroundRect.height + offsetY
+        fillMode: Image.PreserveAspectCrop
         opacity: .6
         source: Utils.urlFromPath(backgroundRect.imagePath)
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
     }
 
     OpacityAnimator {
