@@ -1,7 +1,5 @@
 #include "utils.h"
 
-#include <QCoreApplication>
-#include <QDir>
 #include <qDebug>
 
 Utils* Utils::m_instance = nullptr;
@@ -47,4 +45,9 @@ bool Utils::save(const QString &filename, const QByteArray &data)
 bool Utils::fileExists(const QString &path)
 {
     return  QFileInfo::exists(path);
+}
+
+QSizeF Utils::textSize(const QFont &font, const QString &string) const
+{
+    return QFontMetricsF(font).size(Qt::TextSingleLine, string);
 }

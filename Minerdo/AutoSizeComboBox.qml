@@ -12,8 +12,9 @@ ComboBox {
     function adjustSize() {
         textMetrics.font = autoSizeComboBox.font
         for(var i = 0; i < model.count; i++){
-            textMetrics.text = model.get(i).key
-            modelWidth = Math.max(textMetrics.width, modelWidth)
+            modelWidth = Math.max(
+                        Utils.textSize(autoSizeComboBox.font, model.get(i).key).width,
+                        modelWidth)
         }
     }
 

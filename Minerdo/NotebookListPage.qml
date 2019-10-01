@@ -60,10 +60,7 @@ Item {
             }
 
             Label {
-                fontSizeMode: Text.Fit
                 anchors { left: parent.left; right: parent.right; top: parent.top }
-                padding: UI.dp(18)
-                font.pointSize: 30
                 height: (toolBar.implicitHeight + toolBar.height) / 2
                 text: {
                     const date = new Date()
@@ -75,6 +72,11 @@ Item {
                     } else {
                         qsTr("Good Evening.")
                     }
+                }
+                Component.onCompleted: {
+                    padding = (toolBar.implicitHeight-Utils.textSize(font, text).height) / 2
+                    font.pointSize = 30
+                    fontSizeMode = Text.Fit
                 }
             }
 
