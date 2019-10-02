@@ -59,3 +59,10 @@ void Utils::setWindowAlwaysOnTop(QWindow *window, bool alwaysOnTop)
     setAlwaysOnTop(window, alwaysOnTop);
 #endif
 }
+
+QString Utils::strip(const QString &html) const
+{
+    QTextDocument doc;
+    doc.setHtml(html);
+    return doc.toPlainText();
+}

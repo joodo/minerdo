@@ -37,18 +37,18 @@ Page {
         ColumnLayout {
             anchors { left: parent.left; right: parent.right }
 
-            EntryTextArea {
+            MinerdoTextArea {
                 id: questionTextArea
                 placeholderText: qsTr("Question")
                 Layout.fillWidth: true
                 focus: true
             }
-            EntryTextArea {
+            MinerdoTextArea {
                 id: answerTextArea
                 placeholderText: qsTr("Answer")
                 Layout.fillWidth: true
             }
-            EntryTextArea {
+            MinerdoTextArea {
                 id: noteTextArea
                 placeholderText: qsTr("Note (optional)")
                 Layout.fillWidth: true

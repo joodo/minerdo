@@ -6,6 +6,7 @@
 #include <QFontMetricsF>
 #include <QCoreApplication>
 #include <QDir>
+#include <QTextDocument>
 
 class Utils : public QObject
 {
@@ -22,6 +23,7 @@ public slots:
     bool fileExists(const QString& path);
     QSizeF textSize(const QFont& font, const QString& string) const;
     void setWindowAlwaysOnTop(QWindow* window, bool alwaysOnTop = true);
+    QString strip(const QString& html) const;
 
 private:
     static Utils* m_instance;

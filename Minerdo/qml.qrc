@@ -11,7 +11,7 @@
         <file>EntryListPage.qml</file>
         <file>EntryEditPage.qml</file>
         <file>Actions.qml</file>
-        <file>EntryTextArea.qml</file>
+        <file>MinerdoTextArea.qml</file>
         <file>Snackbar.qml</file>
         <file>CollapsableToolButton.qml</file>
         <file>ColorRadioButton.qml</file>

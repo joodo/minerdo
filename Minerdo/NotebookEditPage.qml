@@ -37,7 +37,7 @@ Page {
 
         ColumnLayout {
             anchors { left: parent.left; right: parent.right }
-            EntryTextArea { // TODO: rename component name
+            MinerdoTextArea {
                 id: nameTextArea
                 Layout.fillWidth: true
                 placeholderText: qsTr("Notebook Name")
