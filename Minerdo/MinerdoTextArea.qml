@@ -12,9 +12,9 @@ TextArea {
     Keys.onPressed: {
         if (event.key === Qt.Key_Tab) {
             if (event.modifiers === Qt.NoModifier) {
-                nextItemInFocusChain().focus = true
+                nextItemInFocusChain().forceActiveFocus()
             } else if (event.modifiers === Qt.ShiftModifier) {
-                nextItemInFocusChain(false).focus = true
+                nextItemInFocusChain(false).forceActiveFocus()
             }
         }
     }

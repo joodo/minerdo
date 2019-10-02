@@ -48,7 +48,6 @@ RowLayout {
         text: qsTr("Search")
         onClicked: {
             searchPane.state = "show"
-            searchPane.focus = true
             Actions.setCurrentNotebook(-1)
             SearchEngine.updateIndex(States.entryModel, ["question", "answer", "note"])
             SearchEngine.clearResult()

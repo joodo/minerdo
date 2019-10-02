@@ -86,7 +86,7 @@ Page {
                                          "note": noteTextArea.text,
                                      })
                     questionTextArea.clear()
-                    questionTextArea.focus = true
+                    questionTextArea.forceActiveFocus()
                     answerTextArea.clear()
                     noteTextArea.clear()
                 }

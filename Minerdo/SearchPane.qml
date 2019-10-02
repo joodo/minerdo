@@ -11,6 +11,8 @@ Pane {
 
     readonly property alias text: searchField.text
 
+    onStateChanged: if (state === "show") searchField.forceActiveFocus()
+
     visible: opacity !== 0
     Behavior on opacity { OpacityAnimator { duration: UI.controlsDuration } }
     TextField {
@@ -47,10 +49,6 @@ Pane {
                 target: searchPane
                 opacity: 1
             }
-            PropertyChanges {
-                target: searchField
-                focus: true
-            }
         },
         State {
             name: "hide"
@@ -59,6 +57,5 @@ Pane {
                 opacity: 0
             }
         }
-        
     ]
 }

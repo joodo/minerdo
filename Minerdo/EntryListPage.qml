@@ -35,7 +35,6 @@ Page {
                 icon.source: "qrc:/material-icons/search.svg"
                 onClicked: {
                     searchPane.state = "show"
-                    searchPane.focus = true
                     SearchEngine.updateIndex(States.entryModel, ["question", "answer", "note"])
                     SearchEngine.clearResult()
                 }
