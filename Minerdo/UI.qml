@@ -20,6 +20,7 @@ QtObject {
     readonly property real cardHeight: 132
     readonly property real pagePadding: 16
     readonly property real listSpacing: 12
+    readonly property real windowTitleBarHeight: 20
 
     readonly property int backgroundShade: Material.theme === Material.Light? Material.Shade100 : Material.Shade500
 }

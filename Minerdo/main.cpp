@@ -13,6 +13,8 @@
 #include "utils.h"
 #include "messagehandler.h"
 
+#include "platform.h"
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -58,6 +60,12 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+#ifdef Q_OS_MACOS
+    // Hide window title bar under macOS
+    auto window = qobject_cast<QQuickWindow*>(engine.rootObjects().first());
+    hideTitleBar(window);
+#endif
 
     return app.exec();
 }

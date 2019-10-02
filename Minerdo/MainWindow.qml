@@ -16,11 +16,32 @@ ApplicationWindow {
     title: qsTr("Minerdo")
     flags: Qt.WindowFullscreenButtonHint
 
+    header: Control {
+        background: Rectangle {
+            color: "black"
+            opacity: 0.2
+        }
+
+        height: UI.windowTitleBarHeight
+    }
+
     StackView {
         id: stackView
 
         anchors.fill: parent
         initialItem: noteBookListComponent
+
+        onCurrentItemChanged: {
+            const header = currentItem.header
+            if (! header) {
+                print("No header found in page " + currentItem.title);
+                return;
+            }
+
+            header.background.y = -UI.windowTitleBarHeight
+            header.background.height = Qt.binding(
+                        () => header.height + UI.windowTitleBarHeight)
+        }
 
         Component {
             id: noteBookListComponent

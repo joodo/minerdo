@@ -25,6 +25,7 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
@@ -41,17 +42,20 @@ HEADERS += \
     itemmodel.h \
     messagehandler.h \
     notebookmodel.h \
+    platform.h \
     searchengine.h \
     sqlqmlmodel.h \
     utils.h
 
 macx {
     ICON = logo.icns
+
+    OBJECTIVE_SOURCES += \
+        platform.mm
+
+    LIBS += -framework Foundation
 }
 
 win32 {
     RC_ICONS = logo.ico
 }
-
-DISTFILES += \
-    material-icons/cancel.svg

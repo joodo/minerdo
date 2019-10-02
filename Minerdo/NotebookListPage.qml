@@ -15,6 +15,8 @@ Item {
     signal editEntryTriggered()
     signal settingsTriggered()
 
+    property alias header: page.header
+
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.NoButton
@@ -44,20 +46,19 @@ Item {
     }
 
     Page {
+        id: page
+
         anchors.fill: parent
 
         header: ToolBar {
             id: toolBar
             readonly property real maxHeight: 200
-
-            height: maxHeight
-
-            BackgroundRect {
-                id: backgroundRect
-                anchors.fill: parent
-                minimumHeight: toolBar.implicitHeight
+            background: BackgroundRect {
+                minimumHeight: toolBar.implicitHeight + UI.windowTitleBarHeight
                 maximumHeight: toolBar.maxHeight
             }
+
+            height: maxHeight
 
             Label {
                 anchors { left: parent.left; right: parent.right; top: parent.top }
