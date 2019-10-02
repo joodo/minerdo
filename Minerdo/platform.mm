@@ -16,8 +16,10 @@ void hideTitleBar(QQuickWindow *w)
 
 void setAlwaysOnTop(QWindow *window, bool alwaysOnTop)
 {
+    auto nsWindow = [(NSView*)window->winId() window];
     if (alwaysOnTop) {
-        auto nsWindow = [(NSView*)window->winId() window];
         nsWindow.level = NSModalPanelWindowLevel;
+    } else {
+        nsWindow.level = NSNormalWindowLevel;
     }
 }
