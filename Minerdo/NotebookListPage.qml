@@ -2,6 +2,7 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
+import QtQuick.Controls.Material.impl 2.12
 
 import Minerdo 1.0
 import "axios.js" as Axios
@@ -56,6 +57,12 @@ Item {
             background: BackgroundRect {
                 minimumHeight: toolBar.implicitHeight + UI.windowTitleBarHeight
                 maximumHeight: toolBar.maxHeight
+
+                layer.enabled: toolBar.Material.elevation > 0
+                layer.effect: ElevationEffect {
+                    elevation: toolBar.Material.elevation
+                    fullWidth: true
+                }
             }
 
             height: maxHeight
