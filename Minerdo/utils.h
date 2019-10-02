@@ -21,6 +21,7 @@ public slots:
     bool save(const QString& filename, const QByteArray& data);
     bool fileExists(const QString& path);
     QSizeF textSize(const QFont& font, const QString& string) const;
+    void setWindowAlwaysOnTop(QWindow* window, bool alwaysOnTop = true);
 
 private:
     static Utils* m_instance;

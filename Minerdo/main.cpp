@@ -66,6 +66,7 @@ int main(int argc, char *argv[])
     auto window = qobject_cast<QQuickWindow*>(engine.rootObjects().first());
     hideTitleBar(window);
 #endif
+    // TODO: enable stay on top under Windows
 
     return app.exec();
 }

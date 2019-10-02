@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "platform.h"
 
 #include <qDebug>
 
@@ -50,4 +51,11 @@ bool Utils::fileExists(const QString &path)
 QSizeF Utils::textSize(const QFont &font, const QString &string) const
 {
     return QFontMetricsF(font).size(Qt::TextSingleLine, string);
+}
+
+void Utils::setWindowAlwaysOnTop(QWindow *window, bool alwaysOnTop)
+{
+#ifdef Q_OS_MACOS
+    setAlwaysOnTop(window, alwaysOnTop);
+#endif
 }

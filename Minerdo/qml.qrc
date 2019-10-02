@@ -34,5 +34,6 @@
         <file>CollapsableMenu.qml</file>
         <file>material-icons/add.svg</file>
         <file>FloatingActionButton.qml</file>
+        <file>AlwaysOnTopButton.qml</file>
     </qresource>
 </RCC>

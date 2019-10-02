@@ -21,8 +21,14 @@ ApplicationWindow {
             color: "black"
             opacity: 0.2
         }
-
         height: UI.windowTitleBarHeight
+        AlwaysOnTopButton {
+            anchors.verticalCenter: parent.verticalCenter
+            x: 68
+            onCheckedChanged: {
+                Utils.setWindowAlwaysOnTop(window, checked)
+            }
+        }
     }
 
     StackView {
