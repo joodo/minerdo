@@ -93,7 +93,7 @@ Item {
                 }
 
                 anchors {
-                    right: parent.right; bottom: parent.bottom
+                    right: parent.right; bottom: parent.bottom; rightMargin: UI.pagePadding
                 }
             }
 
