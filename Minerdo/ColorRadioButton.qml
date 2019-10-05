@@ -15,6 +15,13 @@ RadioButton {
             radius: implicitHeight
             color: Material.color(radioButton.color, UI.backgroundShade)
             border.width: radioButton.checked || radioButton.hovered? 2 : 0
-            border.color: Material.color(Material.Grey)
+            border.color: Material.hintTextColor
+            Icon {
+                anchors.centerIn: parent
+                visible: radioButton.checked
+                source: "qrc:/material-icons/check.svg"
+                size: 20
+                color: parent.border.color
+            }
     }
 }

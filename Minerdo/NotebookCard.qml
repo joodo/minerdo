@@ -58,7 +58,8 @@ Pane {
         flat: true
         text: qsTr("Edit")
         anchors { bottom: parent.bottom; bottomMargin: -8; right: parent.right }
-        visible: noteBookCard.hovered
+        opacity: noteBookCard.hovered? 1 : 0
+        Behavior on opacity { OpacityAnimator { duration: UI.controlsDuration } }
         background: Item {}
         highlighted: hovered
         onClicked: noteBookCard.editClicked()

@@ -37,5 +37,7 @@
         <file>AlwaysOnTopButton.qml</file>
         <file>SettingsChangesRequestRestart.qml</file>
         <file>material-icons/warning.svg</file>
+        <file>material-icons/check.svg</file>
+        <file>Icon.qml</file>
     </qresource>
 </RCC>
