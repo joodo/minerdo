@@ -21,6 +21,7 @@ Rectangle {
     implicitHeight: 48
 
     Rectangle {
+        id: backgroundImageRect
 
         Component.onCompleted: {
             opacity = image.status===Image.Ready? Qt.binding(opacityFromHeight) : 0
@@ -84,9 +85,9 @@ Rectangle {
             OpacityAnimator {
                 id: backgroundShowAnimator
                 duration: UI.cardExpandDuration
-                target: backgroundRect
+                target: backgroundImageRect
                 to: opacityFromHeight()
-                onFinished: backgroundRect.opacity = Qt.binding(opacityFromHeight)
+                onFinished: backgroundImageRect.opacity = Qt.binding(opacityFromHeight)
             }
         }
     }
