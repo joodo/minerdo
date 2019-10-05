@@ -34,15 +34,14 @@ Page {
 
         ColumnLayout {
             anchors { left: parent.left; right: parent.right }
-            // General: counter / tray / startup
-            // Interface: language / darkmode
+            // General: counter
             Label {
                 text: qsTr("Interface")
                 font.pointSize: 24
                 color: Material.hintTextColor
                 Layout.fillWidth: true
             }
-/*
+
             Label {
                 text: qsTr("Language")
                 font.bold: true
@@ -54,9 +53,15 @@ Page {
                 Layout.fillWidth: true
             }
             AutoSizeComboBox {
-                model: ["System(English)", "English", "Chinese"]
+                model: Utils.supportLanguages()
+                textRole: "text"
+                onCurrentIndexChanged: {
+                    Settings.userInterface.language = model[currentIndex].value
+                }
             }
-*/
+            SettingsChangesRequestReboot {
+                visible: Settings.userInterface.language !== Settings.init.interface.language
+            }
 
             Label {
                 text: qsTr("Theme")
@@ -67,8 +72,8 @@ Page {
                 id: themeComboBox
                 textRole: "key"
                 model: ListModel {
-                    ListElement { key: "Light"; value: "Light" }
-                    ListElement { key: "Dark"; value: "Dark" }
+                    ListElement { key: qsTr("Light"); value: "Light" }
+                    ListElement { key: qsTr("Dark"); value: "Dark" }
                 }
                 onActivated: {
                     const value = model.get(index).value
@@ -76,7 +81,7 @@ Page {
                 }
                 Component.onCompleted: {
                     model.insert(0, {
-                                     "key": "System" + (themeTestItem.Material.theme === Material.Light? "(Light)" : "(Dark)"),
+                                     "key": qsTr("System") + (themeTestItem.Material.theme === Material.Light? qsTr("(Light)") : qsTr("(Dark)")),
                                      "value": "System"
                                  })
                     for (let i = 0; i < model.count; i++) {
@@ -91,14 +96,8 @@ Page {
                     Material.theme: Material.System
                 }
             }
-            Label {
-                background: Rectangle {
-                    color: Material.color(Material.BlueGrey, UI.backgroundShade)
-                }
-                text: "⚠︎ " + qsTr("Restart Minerdo to apply these changes.")
+            SettingsChangesRequestReboot {
                 visible: Settings.userInterface.theme !== Settings.init.interface.theme
-                padding: 6
-                font.pointSize: 11
             }
 
             Rectangle {

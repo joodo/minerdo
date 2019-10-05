@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QDir>
 #include <QSettings>
+#include <QTranslator>
 
 #include "entrymodel.h"
 #include "itemmodel.h"
@@ -29,6 +30,12 @@ int main(int argc, char *argv[])
     qputenv("QT_QUICK_CONTROLS_MATERIAL_THEME",
             settings.value("interface/theme").toString().toUtf8());
 
+    // Localization
+    QTranslator translator;
+    if (translator.load(settings.value("interface/language").toString(),
+                        QM_FILES_RESOURCE_PREFIX)) {
+        app.installTranslator(&translator);
+    }
 
     // sql
     auto database = QSqlDatabase::addDatabase("QSQLITE");

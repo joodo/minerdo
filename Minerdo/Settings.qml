@@ -9,12 +9,14 @@ QtObject {
         category: "interface"
         property string theme: "System"
         property string backgroundUrl
+        property string language: Utils.systemLanguage()
     }
     property var init
     Component.onCompleted: {
         init = {
             "interface": {
-                "theme": userInterface.theme
+                "theme": userInterface.theme,
+                "language": userInterface.language
             }
         }
     }

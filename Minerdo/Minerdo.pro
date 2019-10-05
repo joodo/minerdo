@@ -1,6 +1,6 @@
 QT += quick sql
 
-CONFIG += c++11
+CONFIG += c++11 lrelease embed_translations
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -47,6 +47,12 @@ HEADERS += \
     sqlqmlmodel.h \
     utils.h
 
+TRANSLATIONS = \
+    translations/en_US.ts \
+    translations/zh_CN.ts
+QM_FILES_RESOURCE_PREFIX = "i18n"
+DEFINES += QM_FILES_RESOURCE_PREFIX=\\\":/$$QM_FILES_RESOURCE_PREFIX\\\"
+
 macx {
     ICON = logo.icns
 
@@ -58,4 +64,8 @@ macx {
 
 win32 {
     RC_ICONS = logo.ico
+}
+
+debug {
+    CONFIG += sdk_no_version_check
 }

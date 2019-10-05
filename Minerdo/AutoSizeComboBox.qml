@@ -10,9 +10,9 @@ ComboBox {
 
     property real modelWidth: 0
     function adjustSize() {
-        for(var i = 0; i < model.count; i++){
+        for(var i = 0; i < count; i++){
             modelWidth = Math.max(
-                        Utils.textSize(autoSizeComboBox.font, model.get(i).key).width,
+                        Utils.textSize(font, textAt(i)).width,
                         modelWidth)
         }
     }

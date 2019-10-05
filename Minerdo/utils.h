@@ -1,12 +1,16 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <QObject>
+#include <QJsonArray>
+#include <QJsonObject>
 #include <QUrl>
 #include <QFontMetricsF>
 #include <QCoreApplication>
 #include <QDir>
 #include <QTextDocument>
+#include <QLocale>
+#include <QTranslator>
+#include <QSettings>
 
 class Utils : public QObject
 {
@@ -25,8 +29,13 @@ public slots:
     void setWindowAlwaysOnTop(QWindow* window, bool alwaysOnTop = true);
     QString strip(const QString& html) const;
 
+    QJsonArray supportLanguages() const;
+    QString systemLanguage() const;
+
 private:
     static Utils* m_instance;
+
+    QTranslator *m_currentTranslator = nullptr;
 };
 
 #endif // UTILS_H

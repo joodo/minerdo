@@ -25,6 +25,4 @@ Button {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
-    ToolTip.text: qsTr("Stay on top")
-    ToolTip.visible: hovered
 }

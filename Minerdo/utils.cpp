@@ -66,3 +66,31 @@ QString Utils::strip(const QString &html) const
     doc.setHtml(html);
     return doc.toPlainText();
 }
+
+QJsonArray Utils::supportLanguages() const
+{
+    QSettings settings;
+    auto currentLang = settings.value("interface/language").toString();
+
+    QJsonArray array;
+    QDir langDir(QM_FILES_RESOURCE_PREFIX);
+    for (auto filename : langDir.entryList(QDir::Files)) {
+        QJsonObject object;
+        auto code = filename.left(5);
+        object["value"] = code;
+        QLocale locale(code);
+        object["text"] = QString("%1 (%2)").arg(locale.nativeLanguageName()).arg(locale.nativeCountryName());
+
+        if (code == currentLang) {
+            array.prepend(object);
+        } else {
+            array.append(object);
+        }
+    }
+    return array;
+}
+
+QString Utils::systemLanguage() const
+{
+    return QLocale::system().name();
+}

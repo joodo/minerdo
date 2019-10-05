@@ -38,7 +38,7 @@ RowLayout {
                 notebookListPage.reviewTriggered()
             } else {
                 UI.showMessage({
-                                   "text": qsTr("There's no entry. Please create one.")
+                                   "text": qsTr("There's no entry, please create one.")
                                })
             }
         }
