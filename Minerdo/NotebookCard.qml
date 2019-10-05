@@ -22,8 +22,6 @@ Pane {
     background: Rectangle {
         color: Material.color(noteBookCard.materialColor, UI.backgroundShade)
         radius: 8
-        border.color: Material.color(Material.Grey)
-        border.width: 1
         layer.enabled: noteBookCard.enabled && noteBookCard.Material.elevation > 0
         layer.effect: ElevationEffect {
             elevation: noteBookCard.Material.elevation

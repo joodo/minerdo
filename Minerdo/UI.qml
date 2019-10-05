@@ -22,5 +22,5 @@ QtObject {
     readonly property real listSpacing: 12
     readonly property real windowTitleBarHeight: Qt.platform.os==="osx"? 22 : 0
 
-    readonly property int backgroundShade: Material.theme === Material.Light? Material.Shade100 : Material.Shade500
+    readonly property int backgroundShade: Material.theme === Material.Light? Material.Shade100 : Material.Shade900
 }

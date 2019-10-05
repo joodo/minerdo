@@ -10,12 +10,11 @@ RadioButton {
     property int color
 
     indicator: null
-    contentItem: Item {
-        implicitHeight: 26; implicitWidth: 36
-        Rectangle {
-            anchors { fill: parent; margins: checked? 0 : 1 }
-            radius: 4
-            color: Material.color(radioButton.color, checked? Material.Shade500:UI.backgroundShade)
-        }
+    contentItem: Rectangle {
+            implicitHeight: 26; implicitWidth: implicitHeight
+            radius: implicitHeight
+            color: Material.color(radioButton.color, UI.backgroundShade)
+            border.width: radioButton.checked || radioButton.hovered? 2 : 0
+            border.color: Material.color(Material.Grey)
     }
 }
