@@ -5,7 +5,7 @@
 #include <QSqlRecord>
 #include <QJsonObject>
 #include <QSqlError>
-#include <qDebug>
+#include <QtDebug>
 
 class SqlQmlModel : public QSqlTableModel
 {

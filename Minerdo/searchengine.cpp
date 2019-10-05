@@ -1,6 +1,6 @@
 #include "searchengine.h"
 
-#include <qDebug>
+#include <QtDebug>
 
 SearchEngine* SearchEngine::m_instance = nullptr;
 

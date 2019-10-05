@@ -1,7 +1,7 @@
 #include "utils.h"
 #include "platform.h"
 
-#include <qDebug>
+#include <QtDebug>
 
 Utils* Utils::m_instance = nullptr;
 

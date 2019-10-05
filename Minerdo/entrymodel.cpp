@@ -1,6 +1,6 @@
 #include "entrymodel.h"
 
-#include <qDebug>
+#include <QtDebug>
 
 EntryModel::EntryModel(QObject *parent) : SqlQmlModel(parent)
 {

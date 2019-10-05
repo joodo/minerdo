@@ -1,6 +1,6 @@
 #include "itemmodel.h"
 
-#include <qDebug>
+#include <QtDebug>
 
 bool ItemModel::exists()
 {
