@@ -194,9 +194,9 @@
     </message>
 </context>
 <context>
-    <name>SettingsChangesRequestReboot</name>
+    <name>SettingsChangesRequestRestart</name>
     <message>
-        <location filename="../SettingsChangesRequestReboot.qml" line="12"/>
+        <location filename="../SettingsChangesRequestRestart.qml" line="9"/>
         <source>Restart Minerdo to apply this change.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -209,47 +209,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="40"/>
+        <location filename="../SettingsPage.qml" line="39"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="47"/>
+        <location filename="../SettingsPage.qml" line="46"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="52"/>
+        <location filename="../SettingsPage.qml" line="51"/>
         <source>Choose the languages used to display menus and messages from Minerdo.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="69"/>
+        <location filename="../SettingsPage.qml" line="67"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="77"/>
+        <location filename="../SettingsPage.qml" line="75"/>
         <source>Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="78"/>
+        <location filename="../SettingsPage.qml" line="76"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="86"/>
+        <location filename="../SettingsPage.qml" line="84"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="86"/>
+        <location filename="../SettingsPage.qml" line="84"/>
         <source>(Light)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="86"/>
+        <location filename="../SettingsPage.qml" line="84"/>
         <source>(Dark)</source>
         <translation type="unfinished"></translation>
     </message>

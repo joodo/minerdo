@@ -35,6 +35,7 @@
         <file>material-icons/add.svg</file>
         <file>FloatingActionButton.qml</file>
         <file>AlwaysOnTopButton.qml</file>
-        <file>SettingsChangesRequestReboot.qml</file>
+        <file>SettingsChangesRequestRestart.qml</file>
+        <file>material-icons/warning.svg</file>
     </qresource>
 </RCC>

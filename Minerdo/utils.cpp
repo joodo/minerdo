@@ -67,6 +67,12 @@ QString Utils::strip(const QString &html) const
     return doc.toPlainText();
 }
 
+void Utils::restart()
+{
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+}
+
 QJsonArray Utils::supportLanguages() const
 {
     QSettings settings;

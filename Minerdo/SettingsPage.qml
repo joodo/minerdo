@@ -59,7 +59,7 @@ Page {
                     Settings.userInterface.language = model[currentIndex].value
                 }
             }
-            SettingsChangesRequestReboot {
+            SettingsChangesRequestRestart {
                 visible: Settings.userInterface.language !== Settings.init.interface.language
             }
 
@@ -96,7 +96,7 @@ Page {
                     Material.theme: Material.System
                 }
             }
-            SettingsChangesRequestReboot {
+            SettingsChangesRequestRestart {
                 visible: Settings.userInterface.theme !== Settings.init.interface.theme
             }
 

@@ -200,7 +200,14 @@
 <context>
     <name>SettingsChangesRequestReboot</name>
     <message>
-        <location filename="../SettingsChangesRequestReboot.qml" line="12"/>
+        <source>Restart Minerdo to apply this change.</source>
+        <translation type="vanished">重启 Minerdo 来应用这个更改。</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsChangesRequestRestart</name>
+    <message>
+        <location filename="../SettingsChangesRequestRestart.qml" line="9"/>
         <source>Restart Minerdo to apply this change.</source>
         <translation>重启 Minerdo 来应用这个更改。</translation>
     </message>
@@ -213,47 +220,47 @@
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="40"/>
+        <location filename="../SettingsPage.qml" line="39"/>
         <source>Interface</source>
         <translation>界面</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="47"/>
+        <location filename="../SettingsPage.qml" line="46"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="52"/>
+        <location filename="../SettingsPage.qml" line="51"/>
         <source>Choose the languages used to display menus and messages from Minerdo.</source>
         <translation>选择 Minerdo 显示菜单和消息时使用的语言。</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="69"/>
+        <location filename="../SettingsPage.qml" line="67"/>
         <source>Theme</source>
         <translation>主题</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="77"/>
+        <location filename="../SettingsPage.qml" line="75"/>
         <source>Light</source>
         <translation>明亮</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="78"/>
+        <location filename="../SettingsPage.qml" line="76"/>
         <source>Dark</source>
         <translation>深色</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="86"/>
+        <location filename="../SettingsPage.qml" line="84"/>
         <source>System</source>
         <translation>跟随系统</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="86"/>
+        <location filename="../SettingsPage.qml" line="84"/>
         <source>(Light)</source>
         <translation>（明亮）</translation>
     </message>
     <message>
-        <location filename="../SettingsPage.qml" line="86"/>
+        <location filename="../SettingsPage.qml" line="84"/>
         <source>(Dark)</source>
         <translation>（深色）</translation>
     </message>

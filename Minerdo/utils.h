@@ -11,6 +11,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QSettings>
+#include <QProcess>
 
 class Utils : public QObject
 {
@@ -28,6 +29,7 @@ public slots:
     QSizeF textSize(const QFont& font, const QString& string) const;
     void setWindowAlwaysOnTop(QWindow* window, bool alwaysOnTop = true);
     QString strip(const QString& html) const;
+    void restart();
 
     QJsonArray supportLanguages() const;
     QString systemLanguage() const;
