@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.13
 import QtQuick.Controls.Material.impl 2.12
 
 import Minerdo 1.0
-import "axios.js" as Axios
 
 Item {
     id: notebookListPage

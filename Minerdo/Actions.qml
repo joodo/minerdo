@@ -18,9 +18,10 @@ QtObject {
         States.notebookModel.update(e)
     }
 
-    // FIXME: dirty entries after remove notebook
+    // TODO: Use transaction to remove notebook
     function removeCurrentNotebook() {
-        print(States.currentNotebook.index)
+        const notebookId = States.currentNotebook.id
+        States.entryModel.removeAllEntriesInNotebook(notebookId)
         States.notebookModel.remove(States.currentNotebook.index)
     }
 

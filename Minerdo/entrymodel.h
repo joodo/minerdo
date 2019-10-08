@@ -9,6 +9,7 @@
 #include <QSqlTableModel>
 #include <QRandomGenerator>
 #include <QDateTime>
+#include <QSqlQuery>
 
 #include "sqlqmlmodel.h"
 
@@ -39,6 +40,7 @@ public:
 public slots:
     int randomIndex();
     QJsonObject statusCount();
+    bool removeAllEntriesInNotebook(int notebookId);
 
 private:
     qreal weight(const QSqlRecord& entry);

@@ -72,6 +72,22 @@ QJsonObject EntryModel::statusCount()
     return re;
 }
 
+bool EntryModel::removeAllEntriesInNotebook(int notebookId)
+{
+    QSqlQuery query(QString("DELETE from %1 WHERE notebook=%2")
+                    .arg(tableName())
+                    .arg(notebookId)
+                    );
+    qDebug() << query.lastQuery();
+    auto result = query.exec();
+    if (result) {
+        select();
+    } else {
+        qWarning() << "Failed to remove entries:" << lastError().text();
+    }
+    return result;
+}
+
 qreal EntryModel::weight(const QSqlRecord &entry)
 {
     auto lastReviewedTime = QDateTime::fromMSecsSinceEpoch(entry.value("last_reviewed").toLongLong());

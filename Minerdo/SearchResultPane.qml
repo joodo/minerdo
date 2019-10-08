@@ -4,7 +4,6 @@ import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
 
 import Minerdo 1.0
-import "axios.js" as Axios
 
 Pane {
     id: searchResultPane
