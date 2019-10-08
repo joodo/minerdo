@@ -103,7 +103,7 @@ Page {
             name: "create"
             PropertyChanges {
                 target: button1
-                text: qsTr("Create") // TODO: create? new?
+                text: qsTr("Create") // NOTE: create? new?
                 onClicked: {
                     if (!notebookDetailPage.valid) return
                     const data = {

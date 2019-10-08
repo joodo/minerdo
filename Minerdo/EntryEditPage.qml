@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.13
 import QtQuick.Layouts 1.13
 
 import Minerdo 1.0
-// FIXME: When enter this page from ReviewPage, the last entry in a notebook removed, fix the behavior to jump out and hint
+
 Page {
     id: entryEditPage
 

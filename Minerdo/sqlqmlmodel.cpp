@@ -28,8 +28,8 @@ void SqlQmlModel::remove(int index)
 {
     beginRemoveRows(QModelIndex(), index, index);
     removeRow(index);
-    endRemoveRows();
     select();
+    endRemoveRows();
 }
 
 QHash<int, QByteArray> SqlQmlModel::roleNames() const

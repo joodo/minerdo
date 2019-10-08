@@ -41,6 +41,19 @@ Page {
 
     Component.onCompleted: Actions.pickRandomEntry()
 
+    Connections {
+        target: States.currentEntryModel
+        onIndexChanged: {
+            if (index < 0) {
+                backClicked()
+                UI.showMessage({
+                                   "text": qsTr("There's no entry in %1 anymore.")
+                                   .arg(States.currentNotebook.name)
+                               })
+            }
+        }
+    }
+
     title: States.currentNotebook.name || qsTr("Review")
 
     header: ToolBar {
@@ -220,7 +233,7 @@ Page {
         }
     }
 
-    // TODO: find a more gentle way to solve this
+    // NOTE: find a more gentle way to solve this
     Keys.onReleased: {
         event.accepted = true
 

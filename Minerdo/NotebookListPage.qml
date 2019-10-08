@@ -139,11 +139,12 @@ Item {
                         materialColor: color || 0
                         onClicked: {
                             Actions.setCurrentNotebook(index)
-                            if (Actions.pickRandomEntry()) {
+                            if (States.entryModel.rowCount() > 0) {
                                 notebookListPage.reviewTriggered()
                             } else {
                                 UI.showMessage({
-                                                   "text": qsTr("There's no entry in this notebook. Click \"EDIT\" to create one.")
+                                                   "text": qsTr("There's no entry in %1. Click \"EDIT\" to create one.")
+                                                   .arg(States.currentNotebook.name)
                                                })
                             }
                         }

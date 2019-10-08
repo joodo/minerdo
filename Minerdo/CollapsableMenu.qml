@@ -33,7 +33,7 @@ RowLayout {
         text: qsTr("Review All")
         onClicked: {
             Actions.setCurrentNotebook(-1)
-            if (Actions.pickRandomEntry()) {
+            if (States.entryModel.rowCount() > 0) {
                 notebookListPage.reviewTriggered()
             } else {
                 UI.showMessage({

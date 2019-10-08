@@ -78,7 +78,6 @@ bool EntryModel::removeAllEntriesInNotebook(int notebookId)
                     .arg(tableName())
                     .arg(notebookId)
                     );
-    qDebug() << query.lastQuery();
     auto result = query.exec();
     if (result) {
         select();

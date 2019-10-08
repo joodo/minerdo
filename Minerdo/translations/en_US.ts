@@ -4,22 +4,22 @@
 <context>
     <name>CollapsableMenu</name>
     <message>
-        <location filename="../CollapsableMenu.qml" line="27"/>
+        <location filename="../CollapsableMenu.qml" line="26"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CollapsableMenu.qml" line="34"/>
+        <location filename="../CollapsableMenu.qml" line="33"/>
         <source>Review All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CollapsableMenu.qml" line="41"/>
+        <location filename="../CollapsableMenu.qml" line="40"/>
         <source>There&apos;s no entry, please create one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CollapsableMenu.qml" line="48"/>
+        <location filename="../CollapsableMenu.qml" line="47"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -83,7 +83,7 @@
 <context>
     <name>NotebookCard</name>
     <message>
-        <location filename="../NotebookCard.qml" line="61"/>
+        <location filename="../NotebookCard.qml" line="59"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -124,55 +124,60 @@
 <context>
     <name>NotebookListPage</name>
     <message>
-        <location filename="../NotebookListPage.qml" line="77"/>
+        <location filename="../NotebookListPage.qml" line="76"/>
         <source>Good Morning.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NotebookListPage.qml" line="79"/>
+        <location filename="../NotebookListPage.qml" line="78"/>
         <source>Good Afternoon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NotebookListPage.qml" line="81"/>
+        <location filename="../NotebookListPage.qml" line="80"/>
         <source>Good Evening.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NotebookListPage.qml" line="147"/>
-        <source>There&apos;s no entry in this notebook. Click &quot;EDIT&quot; to create one.</source>
+        <location filename="../NotebookListPage.qml" line="146"/>
+        <source>There&apos;s no entry in %1. Click &quot;EDIT&quot; to create one.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ReviewPage</name>
     <message>
-        <location filename="../ReviewPage.qml" line="44"/>
+        <location filename="../ReviewPage.qml" line="50"/>
+        <source>There&apos;s no entry in %1 anymore.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ReviewPage.qml" line="57"/>
         <source>Review</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ReviewPage.qml" line="90"/>
+        <location filename="../ReviewPage.qml" line="103"/>
         <source>New: %1, Forgotten: %2, Remembered: %3, Memorized: %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ReviewPage.qml" line="191"/>
+        <location filename="../ReviewPage.qml" line="204"/>
         <source>Show Answer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ReviewPage.qml" line="204"/>
+        <location filename="../ReviewPage.qml" line="217"/>
         <source>Remember</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ReviewPage.qml" line="210"/>
+        <location filename="../ReviewPage.qml" line="223"/>
         <source>Forgot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ReviewPage.qml" line="216"/>
+        <location filename="../ReviewPage.qml" line="229"/>
         <source>Memorized</source>
         <translation type="unfinished"></translation>
     </message>
@@ -180,7 +185,7 @@
 <context>
     <name>SearchPane</name>
     <message>
-        <location filename="../SearchPane.qml" line="25"/>
+        <location filename="../SearchPane.qml" line="24"/>
         <source>Search entries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -188,7 +193,7 @@
 <context>
     <name>SearchResultPane</name>
     <message>
-        <location filename="../SearchResultPane.qml" line="47"/>
+        <location filename="../SearchResultPane.qml" line="46"/>
         <source>No Result</source>
         <translation type="unfinished"></translation>
     </message>
