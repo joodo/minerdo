@@ -20,9 +20,6 @@ QtObject {
     property var entryModel: EntryModel { }
     property var currentEntryModel: ItemModel {
         model: entryModel
-        onItemRemoved: {
-            index = entryModel.randomIndex()
-        }
     }
     property var currentEntry: currentEntryModel.item
 

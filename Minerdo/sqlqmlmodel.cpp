@@ -28,7 +28,17 @@ void SqlQmlModel::remove(int index)
 {
     beginRemoveRows(QModelIndex(), index, index);
     removeRow(index);
+    select();
     endRemoveRows();
+
+    /* NOTE: QSqlTableModel STRANGE behavior when removing rows.
+     * According to the documentation, "The model retains a blank row for
+     * successfully deleted row until refreshed with select()."
+     * So for correct data when onModelRowsRemoved emitted, I need
+     * call select() BEFORE endRemoveRows(); but it will cause modelView remove
+     * twice as it received rowsRemoved signal. So another select() is needed
+     * AFTER endRemoveRows() called.
+     */
     select();
 }
 

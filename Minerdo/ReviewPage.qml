@@ -43,13 +43,15 @@ Page {
 
     Connections {
         target: States.currentEntryModel
-        onIndexChanged: {
-            if (index < 0) {
+        onItemRemoved: {
+            if (States.entryModel.rowCount() <= 0) {
                 backClicked()
                 UI.showMessage({
                                    "text": qsTr("There's no entry in %1 anymore.")
                                    .arg(States.currentNotebook.name)
                                })
+            } else {
+                Actions.pickRandomEntry()
             }
         }
     }
