@@ -23,10 +23,16 @@ ApplicationWindow {
         }
         height: UI.windowTitleBarHeight
         AlwaysOnTopButton {
+            id: alwaysOnTopButton
             anchors.verticalCenter: parent.verticalCenter
             x: 68
             onCheckedChanged: {
                 Utils.setWindowAlwaysOnTop(window, checked)
+            }
+            Component.onCompleted: {
+                if (checked) {
+                    Utils.setWindowAlwaysOnTop(window, true)
+                }
             }
         }
     }
@@ -39,7 +45,7 @@ ApplicationWindow {
 
         onCurrentItemChanged: {
             const header = currentItem.header
-            if (! header) {
+            if (!header) {
                 print("No header found in page " + currentItem.title);
                 return;
             }
@@ -143,6 +149,7 @@ ApplicationWindow {
         property alias windowY: window.y
         property alias windowWidth: window.width
         property alias windowHeight: window.height
+        property alias alwaysOnTop: alwaysOnTopButton.checked
     }
 
     ApplicationWindow {
