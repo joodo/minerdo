@@ -69,3 +69,6 @@ win32 {
 debug {
     CONFIG += sdk_no_version_check
 }
+
+DISTFILES += \
+    ../README.md
